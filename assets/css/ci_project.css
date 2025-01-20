@@ -1,0 +1,74 @@
+body,
+html {
+  /* font-family: "Poppins", "serif"; */
+  margin: 0px;
+  padding: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  /* font-family: "Poppins", "serif"; */
+}
+.image-div{
+  height: 100vh;
+ background-image: url('http://localhost/First_CI_Project/assets/images/log-image.jpg');
+  padding: 50px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.outer-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: white;
+  border-radius: 10px;
+  /* align-content: right; */
+  input{
+    border-radius: 20px;
+  }
+  button{
+    border-radius: 20px;
+ font-size: 15px;
+  }
+  
+  
+  #welcome_msg{
+    text-align: center;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  }
+
+  .logo-img{
+    align-items: center;
+    img{
+      height: 30px;
+     margin-left: 34px;
+    }
+  }
+}
+
+
+.Main-container {
+  height: 100%;
+  width: 100vw;
+  
+  .navbar{
+    height: 40px;
+    
+  }
+  .inner-container {
+    display: flex;
+    height: calc(100% - 40px);
+    .sidebar{
+     
+    }
+    .content{
+      
+    }
+  }
+}
