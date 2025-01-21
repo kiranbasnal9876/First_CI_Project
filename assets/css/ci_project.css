@@ -12,63 +12,164 @@ html {
   scroll-behavior: smooth;
   /* font-family: "Poppins", "serif"; */
 }
-.image-div{
+
+
+.button {
+  height: 30px;
+  text-align: center;
+  padding: 5px;
+  font-size: 15px;
+}
+
+
+
+.image-div {
   height: 100vh;
- background-image: url('http://localhost/First_CI_Project/assets/images/log-image.jpg');
+  background-image: url('http://localhost/First_CI_Project/assets/images/log-image.jpg');
   padding: 50px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-.outer-div{
+.outer-div {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   background-color: white;
   border-radius: 10px;
+
   /* align-content: right; */
-  input{
+  input {
     border-radius: 20px;
   }
-  button{
+
+  button {
     border-radius: 20px;
- font-size: 15px;
+    font-size: 15px;
   }
-  
-  
-  #welcome_msg{
+
+
+  #welcome_msg {
     text-align: center;
     /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   }
 
-  .logo-img{
-    align-items: center;
-    img{
-      height: 30px;
-     margin-left: 34px;
-    }
+  .logo-img {
+   display: flex;
+   justify-content: center;
+
   }
 }
 
 
 .Main-container {
+
   height: 100%;
   width: 100vw;
-  
+
+
   .navbar{
-    height: 40px;
-    
+    height: 45px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(95, 123, 155);
+    border-bottom: 1px solid white;
+    color: white;
+
+  .logo{
+    img{
+      width: 60%;
+    }
+    }
+    .user-profile-icon{
+    img{
+  width: 33px;
+  margin-left: 5px;
+
+}
+  
+    }
   }
+
   .inner-container {
     display: flex;
-    height: calc(100% - 40px);
-    .sidebar{
-     
+    height: calc(100% - 45px);
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(95, 123, 155);
+      padding: 15px;
+      height: 100%;
+      a{
+        text-decoration: none;
+        width: 100%;
+        color: white;
+        padding-left: 10px;
+        height: 30px;
+
+
+      }
+
+      a:hover {
+        background-color: rgb(183, 186, 226);
+        /* height: 20px; */
+      }
+
+      .logout-div {
+        margin-top: auto;
+        a:hover {
+        background-color: transparent ;
+          /* height: 20px; */
+        }
+        img{
+          width: 20px;
+        }
+      }
+
     }
-    .content{
-      
+
+    .content {
+      font-size: 15px;
+    height: 100%;
+      input,select {
+        height: 30px;
+        font-size: 15px;
+      }
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      .records-div {
+        padding: 25px;
+        width: 100%;
+        gap: 24px;
+
+        .search-data {
+
+          button {
+            margin-top: 25px;
+
+          }
+
+        }
+
+      }
+
+th{
+  background-color: 
+    #5e7b99;
+    color: white;
+   
+ 
+}
+
     }
   }
 }

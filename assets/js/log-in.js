@@ -21,7 +21,7 @@ $("#log-submit").on("click",function(){
                 dataType:"json",
                 success:function(data){
                if(data.status==200){
-             window.location.href=baseurl+"LogInPage/dashboard";
+             window.location.href=baseurl+"All_Masters/dashboard";
                }
                else{
                 $(".log-error-div").show();

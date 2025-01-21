@@ -1,4 +1,16 @@
+<?php 
+
+
+if($this->session->has_userdata('name'))
+{
+   
+    redirect(base_url()."All_Masters/dashboard");
+}
+
+?>
+
 <?php $this->load->view('header') ?>
+ 
 <div class="image-div">
 
 
@@ -20,7 +32,7 @@
 
             <input type="password" class="form-control" id="log-password" name="password" placeholder=" enter password here">
         </div>
-        <div class="d-grid gap-2 col-6 mx-auto ">
+        <div class="d-grid gap-2 col-6 w-100 ">
 
             <button class="btn btn-primary" type="button" id="log-submit">Log In</button>
         </div>
