@@ -32,7 +32,7 @@ view_load('sidebar');
                             </div>
                            
                             <div class="col-1">
-                                <button class="btn btn-secondary button">Reset</button>
+                                <button class="btn btn-secondary button" type="button">Reset</button>
                             </div>
                         </form>
                     </div>
@@ -54,7 +54,7 @@ view_load('sidebar');
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="row records-div ">
             <div class="search-data col-12">
-                        <form class="row g-3 needs-validation" novalidate>
+                        <form class="row g-3 needs-validation" name="form">
                           
                                
                                 <input type="hidden" class="form-control" id="validationCustom01" value="">
@@ -62,30 +62,30 @@ view_load('sidebar');
                      
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">Item Name:</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                <input type="text" class="form-control" id="validationCustom02"   name="itemName" required minlength="20">
 
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustomUsername" class="form-label"> Price:</label>
                                 <div class="input-group has-validation">
 
-                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                    <input type="text" class="form-control price" id="validationCustomUsername" name="itemPrice" required>
 
                                 </div>
                             </div>
                             <div class="col-md-3">
                             <label for="validationCustomUsername" class="form-label"> item Descrption:</label>
-                              <textarea type="password" class="form-control  " id="validationCustom05" required rows="1"></textarea>
+                              <textarea type="text" class="form-control"  name="itemD" id="validationCustom05" required rows="1"></textarea>
                            
                           </div>
                             <div class="col-md-3 ">
                                 <label for="validationCustom05" class="form-label">Image:</label>
-                                <input type="file" class="form-control" id="validationCustom05" required>
+                                <input type="file" class="form-control" id="validationCustom05" name="itemPath" required>
                             </div>
                            
 
                             <div class="col-1">
-                                <button class="btn btn-secondary button submit  " >Submit</button>
+                                <button class="btn btn-secondary button submit" type="button" >Submit</button>
                             </div>
                         </form>
             

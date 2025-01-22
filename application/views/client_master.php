@@ -73,7 +73,7 @@ view_load('sidebar');
                           
 
                             <div class="col-1">
-                                <button class="btn btn-secondary button">Reset</button>
+                                <button class="btn btn-secondary button" type="button">Reset</button>
                             </div>
                         </form>
                     </div>
@@ -95,7 +95,7 @@ view_load('sidebar');
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="row records-div ">
             <div class="search-data col-12">
-                        <form class="row g-3 needs-validation" novalidate>
+                        <form class="row g-3 needs-validation" name="form">
                           
                                
                                 <input type="hidden" class="form-control" id="validationCustom01" value="">
@@ -103,32 +103,33 @@ view_load('sidebar');
                      
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">Client Name:</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                <input type="text" class="form-control" id="validationCustom02" name="name" value="" required>
 
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustomUsername" class="form-label">Phone Number:</label>
                                 <div class="input-group has-validation">
 
-                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="phone" required>
 
                                 </div>
                             </div>
 
                             <div class="col-md-3">
                                 <label for="validationCustom05" class="form-label">Email:</label>
-                                <input type="email" class="form-control" id="validationCustom05" required>
+                                <input type="email" class="form-control" id="validationCustom05" name="email" required>
                             </div>
                            
                             <div class="col-md-3">
                                 <label for="validationCustom05" class="form-label">Address:</label>
-                                <input type="password" class="form-control" id="validationCustom05" required>
+                                <input type="text" class="form-control" id="validationCustom05" name="address" required>
                              
                             </div>
                             <div class="col-md-3">
     <label for="validationCustom04" class="form-label">State:</label>
     <select class="form-select" id="validationCustom04" required>
       <option  value="">Choose</option>
+      
       
     </select>
    
@@ -143,11 +144,11 @@ view_load('sidebar');
   </div>
   <div class="col-md-3">
                                 <label for="validationCustom05" class="form-label">Pin Code:</label>
-                                <input type="password" class="form-control" id="validationCustom05" required>
+                                <input type="text" class="form-control" id="validationCustom05 numeric" name="pincode" required>
                              
                             </div>
                             <div class="col-1">
-                                <button class="btn btn-secondary button submit  " >Submit</button>
+                                <button class="btn btn-secondary button submit" type="button" >Submit</button>
                             </div>
                         </form>
             </div>

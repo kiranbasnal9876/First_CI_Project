@@ -50,4 +50,9 @@ if($this->session->has_userdata('name'))
 
     </div>
     </div>
-    <?php $this->load->view('footer') ?>
+
+    </div>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/jquery/jquery-3.7.1.min.js"></script>
+<script src="assets/js/log-in.js"></script>
+    

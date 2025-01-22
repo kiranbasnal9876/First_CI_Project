@@ -1,6 +1,6 @@
 <?php 
 view_load('header'); 
- view_load('navbar'); 
+view_load('navbar'); 
 
 
 ?>
@@ -57,7 +57,7 @@ view_load('sidebar');
                             </div>
 
                             <div class="col-1">
-                                <button class="btn btn-secondary button">Reset</button>
+                                <button class="btn btn-secondary button" type="button">Reset</button>
                             </div>
                         </form>
                     </div>

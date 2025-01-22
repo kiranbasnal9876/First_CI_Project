@@ -6,6 +6,8 @@ class All_masters extends CI_Controller{
 
     function dashboard(){
         check_session('dashboard');
+        // print_r( $this->session->userdata('name'));
+       
       }
     function user_master(){
     check_session('user_master');

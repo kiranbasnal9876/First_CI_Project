@@ -1,18 +1,20 @@
 <?php
 view_load('header');
 view_load('navbar');
+$this->form_validation->run();
+// echo validation_errors();
 
 if (! $this->session->has_userdata('name')) {
     header("Location:" . base_url() . "LogInPage");
 }
 ?>
 
+
+
 <div class="col-12 inner-container ">
-    <?php
+    <?php view_load('sidebar'); ?>
 
-    view_load('sidebar');
-    ?>
-
+   
     <div class="content  col-10">
 
 
@@ -31,43 +33,41 @@ if (! $this->session->has_userdata('name')) {
                         <form class="row g-3 needs-validation" novalidate>
                             <div class="col-md-2">
                                 <label for="validationCustom01" class="form-label">ID:</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="" required>
+                                <input type="text" class="form-control" id="validationCustom01" value="" name="user_id" >
 
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">Name:</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                                <input type="text" class="form-control" id="validationCustom02" value="" name="user_name" >
 
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustomUsername" class="form-label">Phon:</label>
-                                <div class="input-group has-validation">
+                                <label for="validationCustom" class="form-label">Phone:</label>
+                               
 
-                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                    <input type="text" class="form-control" id="validationCustom" name="phone">
 
-                                </div>
+                                
                             </div>
 
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">Email:</label>
-                                <input type="email" class="form-control" id="validationCustom05" required>
-                                <div class="invalid-feedback">
-
-                                </div>
+                                <label for="validationCustom" class="form-label">Email:</label>
+                                <input type="text" class="form-control" id="validationCustom" name="email" >
+                              
                             </div>
 
                             <div class="col-1">
-                                <button class="btn btn-secondary button">Reset</button>
+                                <button  type='button' class="btn btn-secondary button">Reset</button>
                             </div>
                         </form>
                     </div>
                     <div class="data-list col-12">
                         <table class="table  table-striped">
                             <th>S.No</th>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Email</th>
+                            <th><i class="bi bi-chevron-expand"></i>ID</th>
+                            <th><i class="bi bi-chevron-expand"></i>Name</th>
+                            <th><i class="bi bi-chevron-expand"></i>Phone</th>
+                            <th><i class="bi bi-chevron-expand"></i>Email</th>
                             <th>Delete</th>
                             <th>Update</th>
                         </table>
@@ -75,44 +75,44 @@ if (! $this->session->has_userdata('name')) {
                 </div>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <div class="row records-div ">
-            <div class="search-data col-12">
-                        <form class="row g-3 needs-validation" novalidate>
-                          
-                               
-                                <input type="hidden" class="form-control" id="validationCustom01" value="">
+                <div class="row records-div ">
+                    <div class="search-data col-12">
+                        <form class="row g-3 needs-validation" name="form">
 
-                     
+
+                            <input type="hidden" class="form-control" id="validationCustom01" name="user_id" value="" >
+
+
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">User Name:</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" required>
-
+                                <input type="text" class="form-control" id="validationCustom02" name="name" value="" minlength="2" maxlength="20" required>
+                                <?php echo  form_error('name'); ?>
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustomUsername" class="form-label">Phone Number:</label>
-                                <div class="input-group has-validation">
 
-                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
 
-                                </div>
+                                <input type="text" class="form-control numeric" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="phone" minlength="10" maxlength="12" required  >
+
+
                             </div>
 
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">Email:</label>
-                                <input type="email" class="form-control" id="validationCustom05" required>
+                                <label for="validationCustom" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="validationCustom" name="email" required>
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">Password:</label>
-                                <input type="password" class="form-control" id="validationCustom05" required>
-                             
+                                <label for="pswd" class="form-label">Password:</label>
+                                <input type="password" class="form-control" id="pswd" name="password" required >
+                               
                             </div>
 
                             <div class="col-1">
-                                <button class="btn btn-secondary button submit  " >Submit</button>
+                                <button type="button" class="btn btn-secondary button submit">Submit</button>
                             </div>
                         </form>
-            </div>
                     </div>
+                </div>
             </div>
 
         </div>

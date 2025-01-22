@@ -19,13 +19,9 @@ class LogInPage extends CI_Controller
 
     $this->load->model('Get_Data');
     $data = $this->Get_Data->loggin_user($email, $password);
-    foreach ($data as $value) {
-
-      $this->session->set_userdata('name', $value);
-    }
-
-
-
+   
+   $this->session->set_userdata('name',$data[0]);
+      
     if ($data == "") {
       $status = 400;
     } else {
