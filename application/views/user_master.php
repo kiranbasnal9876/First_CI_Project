@@ -70,6 +70,7 @@ if (! $this->session->has_userdata('name')) {
                             <th><i class="bi bi-chevron-expand"></i>Email</th>
                             <th>Delete</th>
                             <th>Update</th>
+                            <tbody class="getlist"></tbody>
                         </table>
                     </div>
                 </div>
@@ -77,16 +78,16 @@ if (! $this->session->has_userdata('name')) {
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <div class="row records-div ">
                     <div class="search-data col-12">
-                        <form class="row g-3 needs-validation" name="form">
+                        <form class="row g-3 submit-form" name="form">
 
-
-                            <input type="hidden" class="form-control" id="validationCustom01" name="user_id" value="" >
+                           
+                            <input type="hidden" class="form-control" id="validationCustom01" name="id" value="" >
 
 
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">User Name:</label>
-                                <input type="text" class="form-control" id="validationCustom02" name="name" value="" minlength="2" maxlength="20" required>
-                                <?php echo  form_error('name'); ?>
+                                <input type="text" class="form-control" id="validationCustom02" name="create_by" value="" minlength="2" maxlength="20" required>
+                                
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustomUsername" class="form-label">Phone Number:</label>
@@ -106,7 +107,7 @@ if (! $this->session->has_userdata('name')) {
                                 <input type="password" class="form-control" id="pswd" name="password" required >
                                
                             </div>
-
+                            <input type="hidden" name="table_name" value="user_master">
                             <div class="col-1">
                                 <button type="button" class="btn btn-secondary button submit">Submit</button>
                             </div>

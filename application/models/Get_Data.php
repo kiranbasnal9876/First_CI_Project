@@ -9,4 +9,16 @@ class Get_Data extends CI_Model{
      
 
     }
+
+    function get_states(){
+    return  $this->db->get('state_master')->result_array();
+    }
+
+    function get_destrict($id){
+return $this->db->where('state_id',$id)->get('district_master')->result_array();
+    }
+
+    function records($table_name){
+        return $this->db->get($table_name)->result_array();
+    }
 }

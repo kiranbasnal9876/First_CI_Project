@@ -10,7 +10,7 @@ $("input, select").on("input change", function () {
 
    if(error.length==0){
     $(this).after("<span class='error-message'></span>"); 
-    var error = $(this).next(".error-message"); 
+   error = $(this).next(".error-message"); 
    }
     
 
@@ -60,9 +60,12 @@ $("input, select").on("input change", function () {
     
       if (validPhone.test(value)) {
         error.text("");
-      } else if (value == "") {
+      }
+       else if (value == "") {
         error.text("");
-      } else {
+
+      } 
+      else {
         error.text("atleast 10 digit");
       }
     }
@@ -74,6 +77,7 @@ $("input, select").on("input change", function () {
     }
   });
 
+  // for mueric only...............
   $(document).on("input", ".numeric", function () {
  
     this.value = this.value.replace(/\D/g,"");
@@ -90,12 +94,17 @@ $("input, select").on("input change", function () {
 
 // validation when submit button clicked
   
+
+
 var checkvalidate=true;
 
 function validate() { 
 
-  $("input[type!='hidden']").each(function () {
+  $(".submit-form input[type!='hidden'] , select  ").each(function () {
+    
     if ($(this).val() == "") {
+      $(this).next('.error-message').remove();
+       $(this).after("<span class='error-message'></span>"); 
       $(this).next().text("this field is  required");
       checkvalidate=false;
     }

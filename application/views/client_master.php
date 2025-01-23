@@ -1,11 +1,8 @@
 <?php 
 view_load('header'); 
  view_load('navbar'); 
+ 
 
-if( ! $this->session->has_userdata('name'))
-{
-    header("Location:".base_url()."LogInPage");
-}
 ?>
 
 
@@ -29,7 +26,7 @@ view_load('sidebar');
                 <div class="row records-div ">
 
                     <div class="search-data col-12">
-                        <form class="row g-3 needs-validation" novalidate>
+                        <form class="row g-3 needs-validation">
                             <div class="col-md-1">
                                 <label for="validationCustom01" class="form-label">ID:</label>
                                 <input type="text" class="form-control" id="validationCustom01" value="" required>
@@ -59,9 +56,7 @@ view_load('sidebar');
                             <div class="col-md-2">
                                 <label for="validationCustom05" class="form-label">State:</label>
                                 <input type="text" class="form-control" id="validationCustom05" required>
-                                <div class="invalid-feedback">
-
-                                </div>
+                               
                             </div>
                             <div class="col-md-2">
                                 <label for="validationCustom05" class="form-label">District:</label>
@@ -95,9 +90,9 @@ view_load('sidebar');
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="row records-div ">
             <div class="search-data col-12">
-                        <form class="row g-3 needs-validation" name="form">
+                        <form class="row g-3 needs-validation submit-form" name="form" >
                           
-                               
+                        
                                 <input type="hidden" class="form-control" id="validationCustom01" value="">
 
                      
@@ -108,11 +103,11 @@ view_load('sidebar');
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustomUsername" class="form-label">Phone Number:</label>
-                                <div class="input-group has-validation">
+                                
 
                                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="phone" required>
 
-                                </div>
+                                
                             </div>
 
                             <div class="col-md-3">
@@ -126,27 +121,37 @@ view_load('sidebar');
                              
                             </div>
                             <div class="col-md-3">
-    <label for="validationCustom04" class="form-label">State:</label>
-    <select class="form-select" id="validationCustom04" required>
-      <option  value="">Choose</option>
-      
-      
-    </select>
+                            <label for="validationCustom04" class="form-label" >State:</label>
+                            <select class="form-select" id="inputState"  name="state_id">
+
+                              <option   value="">Choose</option>
+                              
+                              <?php 
+                                
+                                    for($i=0;$i<count($states);$i++){
+
+                                        echo "<option value='{$states[$i]['state_id']}'>{$states[$i]['state_name']}</option>";
+                                    }
+                                            
+    
+                                        ?>
+                            </select>
    
-  </div>
-  <div class="col-md-3">
-    <label for="validationCustom02" class="form-label">District:</label>
-    <select class="form-select" id="validationCustom04" required>
-      <option  value="">Choose</option>
-     
-    </select>
-   
-  </div>
-  <div class="col-md-3">
+                              </div>
+                              <div class="col-md-3">
+                              <label for="validationCustom02" class="form-label">District:</label>
+                              <select class="form-select" id="input_district" name="district_id">
+                              <option id="option" value="">Choose</option>
+                               
+                              </select>
+                             
+                              </div>
+                              <div class="col-md-3">
                                 <label for="validationCustom05" class="form-label">Pin Code:</label>
                                 <input type="text" class="form-control" id="validationCustom05 numeric" name="pincode" required>
                              
                             </div>
+                            <input type="hidden" name="table_name" value="client_master">
                             <div class="col-1">
                                 <button class="btn btn-secondary button submit" type="button" >Submit</button>
                             </div>
