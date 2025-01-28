@@ -79,7 +79,7 @@ function paggination(){
 			
 			$(".getlist").html(data.users_records.table);
 			
-			$("#pagination_left").after(data.users_records.pagination);
+			$("#pagination-container").html(data.users_records.pagination);
 			// $(".getitems").html(records.item_records);
 			// $(".getclients").html(records.client_records);
 		},
@@ -221,3 +221,61 @@ if (image.attr("src") == "") {
 function imgDicShow() {
 	$("#show-img").show();
 }
+
+
+// Pagination logic 
+
+// next btn 
+
+// next button pagination
+$(document).on("click", "#pagination_right", function () {
+	let page = $("#current_page").val();
+	let totalPage = $(".pagination-li").data("pages");
+	page = Number(page) + 1;
+	if (page <= totalPage) {
+		$("#current_page").val(page);
+		paggination();
+	}
+});
+
+
+// previous button pagination
+$(document).on("click", "#pagination_left", function () {
+	let page = $("#current_page").val();
+	page = Number(page) - 1;
+	if (page > 0) {
+		$("#current_page").val(page);
+		paggination();
+	}
+});
+
+// limit
+$("#selected_row").on('input',function(){
+
+	let value = $(this).val();
+
+	$("#limit").val(value);
+
+	paggination();
+
+} )
+
+// sorting 
+let sorting = "DESC";
+$(".changeIcon").on('click' , function(){
+
+if(sorting == "DESC"){
+	sorting = "ASC";
+}else{
+	sorting = "DESC";
+}
+
+let sort_column = $(this).attr('id');
+
+$("#sort_order").val(sorting);
+
+$("#sort_column").val(sort_column);
+
+paggination();
+
+})

@@ -55,10 +55,10 @@ if (! $this->session->has_userdata('name')) {
                                 <input type="text" class="form-control" id="validationCustom" name="email">
 
                             </div>
-                              <input type="hidden"  name="page_no" value='1'>
-                              <input type="hidden"  name="row_no" value="2">
-                              <input type="hidden"  name="colname" value="ID">
-                              <input type="hidden"  name="order" value="DESC">
+                            <input type="hidden" name="page_no" id="current_page" value='1'>
+                            <input type="hidden" name="row_no" id="limit" value="2">
+                            <input type="hidden" name="colname" value="id" id="sort_column">
+                            <input type="hidden" name="order" value="DESC" id="sort_order">
                             <div class="col-1">
                                 <button type='button' class="btn btn-secondary button">Reset</button>
                             </div>
@@ -67,28 +67,27 @@ if (! $this->session->has_userdata('name')) {
                     <div class="data-list  col-12">
                         <div class=" col-12 page-row">
                             <div>
-                                <select>
-
+                                <select id="selected_row">
                                     <option value="2">2</option>
                                     <option value="6">6</option>
                                     <option value="10">10</option>
                                 </select>
                             </div>
                             <div class="pagination">
-                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-  <button type="button" class="btn btn-outline-primary" id="pagination_left">Left</button>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example" id="pagination-container">
+                                    <!-- <button type="button" class="btn btn-outline-primary" id="pagination_left">Left</button>
 
-  <button type="button" class="btn btn-outline-primary">Right</button>
-</div>
+                                    <button type="button" class="btn btn-outline-primary" id="pagination_right">Right</button> -->
+                                </div>
                             </div>
                         </div>
 
                         <table class="table  table-striped">
                             <th>S.No</th>
-                            <th class="changeIcon"><i class="bi bi-chevron-expand"></i>ID</th>
-                            <th class="changeIcon"><i class="bi bi-chevron-expand"></i>Name</th>
-                            <th class="changeIcon"><i class="bi bi-chevron-expand"></i>Phone</th>
-                            <th class="changeIcon"><i class="bi bi-chevron-expand"></i>Email</th>
+                            <th class="changeIcon" id="id" ><i class="bi bi-chevron-expand"></i>ID</th>
+                            <th class="changeIcon" id="name" ><i class="bi bi-chevron-expand"></i>Name</th>
+                            <th class="changeIcon" id="phone" ><i class="bi bi-chevron-expand"></i>Phone</th>
+                            <th class="changeIcon" id="email" ><i class="bi bi-chevron-expand"></i>Email</th>
                             <th>Delete</th>
                             <th>Update</th>
                             <tbody class="getlist"></tbody>

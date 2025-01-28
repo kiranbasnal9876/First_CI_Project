@@ -15,13 +15,20 @@ function records($table_name,$data){
 
        $CI =& get_instance();
        $CI->load->model('Get_Data');
-      $data_table = $CI->Get_Data->records($table_name,$limit,$colname,$order,$data);
+      $data_table = $CI->Get_Data->records($table_name,$limit,$colname,$order,$page_no,$data);
            
-            $total_page= ceil(count($data_table)/$limit);
-        
-          
-             $pages .= "<button type='button' class='btn btn-outline-primary'data-id='$total_page'  id='$page_no'>$page_no</button>";
-            
+      $total_rows = $CI->db->get($table_name)->num_rows();
+            $total_page= ceil($total_rows/$limit);
+
+            // Number of pages 
+  
+           
+    $pages = '<button type="button" class="btn btn-outline-primary" id="pagination_left">Left</button>';
+
+    
+    $pages .= "<button type='button' class='btn btn-outline-primary pagination-li'data-pages='$total_page'  id='$page_no'>$page_no</button>";
+    
+    $pages .='<button type="button" class="btn btn-outline-primary" id="pagination_right">Right</button>';
             
             for($i=0;$i<count($data_table);$i++){
                 $s_no = $i+1;
@@ -38,7 +45,7 @@ function records($table_name,$data){
                     $output .="<td>{$value}</td>";
                 }
                
-                  $output .="<td id='{$data[$i]['id']}' data-table_name='$table_name' class='delete' ><button class='btn btn-danger'><i class='bi bi-trash3 m-3'></i></button></td><td id='{$data[$i]['id']}' data-table_name='$table_name' class='edit' ><button class='btn btn-info'><i class='bi bi-pencil m-3'></i></button></td>";
+                  $output .="<td id='{$data_table[$i]['id']}' data-table_name='$table_name' class='delete' ><button class='btn btn-danger'><i class='bi bi-trash3 m-3'></i></button></td><td id='{$data_table[$i]['id']}' data-table_name='$table_name' class='edit' ><button class='btn btn-info'><i class='bi bi-pencil m-3'></i></button></td>";
                 
                 $output .="</tr>";
 

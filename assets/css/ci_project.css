@@ -146,6 +146,7 @@ html {
     .content {
       font-size: 15px;
       height: 100%;
+      overflow-y: auto;
 
       input,
       select {

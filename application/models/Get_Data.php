@@ -18,9 +18,14 @@ class Get_Data extends CI_Model{
 return $this->db->where('state_id',$id)->get('district_master')->result_array();
     }
 
-    function records($table_name,$data){
-      
-        
-        return $this->db->get($table_name)->result_array();
+    function records($table_name,$limit,$colname,$order,$page_no,$data){
+
+         // Offset of data
+         $offset = ( $page_no - 1) * $limit;
+
+         $this->db->order_by($colname, $order);
+
+        $records = $this->db->get($table_name,$limit,$offset)->result_array();
+        return $records;
     }
 }
