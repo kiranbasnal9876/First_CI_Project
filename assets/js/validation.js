@@ -3,7 +3,7 @@
 
 
 
-$("input, select").on("input change", function () {
+$("  .submit-form   input, select").on("input change", function () {
 
     var value = $(this).val().trim();
     var error = $(this).next(".error-message");
@@ -105,7 +105,11 @@ function validate() {
     if ($(this).val() == "") {
       $(this).next('.error-message').remove();
        $(this).after("<span class='error-message'></span>"); 
-      $(this).next().text("this field is  required");
+       $name=  $(this).prev("label").text();
+  
+    
+       $(this).next("span").text($name.slice(0,-1)+" is required");
+      
       checkvalidate=false;
     }
     else{
@@ -114,3 +118,23 @@ function validate() {
   });
 }
 
+
+
+// validate function when updating data
+
+
+function updatevalidation(e) {
+  let checkvalidate = true;  
+  
+  $("input:not([type='hidden']):not([type='password']):not([type='file'])").each(function () {
+    if ($(this).val() == "") {
+      $(this).next().text("This field is required");
+      checkvalidate = false; 
+      return false;  
+    } else {
+      $(this).next().text(""); 
+    }
+  });
+  
+  return checkvalidate; 
+}

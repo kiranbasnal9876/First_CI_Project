@@ -15,14 +15,14 @@ html {
 
 
 .button {
- 
+
   align-items: center;
 
   font-size: 15px;
 }
 
 
-.error-message{
+.error-message {
   color: red;
 }
 
@@ -60,8 +60,8 @@ html {
   }
 
   .logo-img {
-   display: flex;
-   justify-content: center;
+    display: flex;
+    justify-content: center;
 
   }
 }
@@ -71,7 +71,8 @@ html {
 
   height: 100%;
   width: 100vw;
-  .navbar{
+
+  .navbar {
     height: 45px;
     width: 100vw;
     display: flex;
@@ -82,18 +83,19 @@ html {
     border-bottom: 1px solid white;
     color: white;
 
-  .logo{
-    img{
-      width: 60%;
+    .logo {
+      img {
+        width: 60%;
+      }
     }
-    }
-    .user-profile-icon{
-    img{
-  width: 35px;
-  margin-left: 15px;
 
-}
-  
+    .user-profile-icon {
+      img {
+        width: 35px;
+        margin-left: 15px;
+
+      }
+
     }
   }
 
@@ -103,12 +105,13 @@ html {
 
     .sidebar {
       display: flex;
-    
+
       flex-direction: column;
       background-color: rgb(95, 123, 155);
       padding: 15px;
       height: 100%;
-      a{
+
+      a {
         text-decoration: none;
         width: 100%;
         color: white;
@@ -117,21 +120,23 @@ html {
       }
 
       a:hover {
-        background-color:#02aae5;
-        
+        background-color: #02aae5;
+
       }
-      
-      .active{
-        background-color:#02aae5;
+
+      .active {
+        background-color: #02aae5;
       }
 
       .logout-div {
         margin-top: auto;
+
         a:hover {
-        background-color: transparent ;
+          background-color: transparent;
           /* height: 20px; */
         }
-        img{
+
+        img {
           width: 20px;
         }
       }
@@ -140,8 +145,10 @@ html {
 
     .content {
       font-size: 15px;
-    height: 100%;
-      input,select {
+      height: 100%;
+
+      input,
+      select {
         height: 30px;
         font-size: 15px;
       }
@@ -149,6 +156,8 @@ html {
       label {
         margin-bottom: 5px;
       }
+
+
 
       .records-div {
         padding: 25px;
@@ -166,14 +175,52 @@ html {
 
       }
 
-th{
-  background-color: 
-    #5e7b99;
-    color: white;
-   
- 
-}
+      th {
+        background-color:
+          #5e7b99;
+        color: white;
+
+
+      }
+
+      td {
+        button {
+          margin: 0px;
+          padding: 0px;
+        }
+
+      }
 
     }
+  }
+
+
+
+  .page-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+
+    select {
+      border-radius: 5px;
+
+    }
+
+    .paggination {
+      .btn:focus{
+        box-shadow: white;
+      }
+    }
+  }
+}
+
+
+
+#show-img {
+
+  #pic {
+    width: 40px;
+    height: 50px;
+
   }
 }

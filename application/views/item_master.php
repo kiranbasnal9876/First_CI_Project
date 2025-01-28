@@ -1,7 +1,11 @@
 <?php 
 view_load('header'); 
  view_load('navbar'); 
-
+ if( ! $this->session->has_userdata('name'))
+ {
+     redirect('LogInPage');
+ }
+ 
 ?>
 
 
@@ -46,6 +50,9 @@ view_load('sidebar');
                             <th>Item Image</th>
                             <th>Delete</th>
                             <th>Update</th>
+                            <tbody class="getitems">
+
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -59,29 +66,33 @@ view_load('sidebar');
                                 <input type="hidden" class="form-control" id="validationCustom01" value="">
 
                      
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">Item Name:</label>
-                                <input type="text" class="form-control" id="validationCustom02"   name="itemName" required minlength="20">
+                                <input type="text" class="form-control" id="validationCustom02"   name="itemName" required maxlength="20">
 
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="validationCustomUsername" class="form-label"> Price:</label>
                                
 
-                                    <input type="text" class="form-control price" id="validationCustomUsername" name="itemPrice" required>
+                                    <input type="text" class="form-control price" id="validationCustomUsername" name="itemPrice" maxlength="10">
 
                               
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                             <label for="validationCustomUsername" class="form-label"> item Descrption:</label>
-                              <textarea type="text" class="form-control"  name="itemD" id="validationCustom05" required rows="1"></textarea>
+                              <textarea type="text" class="form-control"  name="itemD" id="validationCustom05" required rows="1" maxlength="200"></textarea>
                            
                           </div>
-                            <div class="col-md-3 ">
+                            <div class="col-md-2">
                                 <label for="validationCustom05" class="form-label">Image:</label>
-                                <input type="file" class="form-control" id="validationCustom05" name="itemPath" required>
+                                <input type="file" class="form-control" id="validationCustom05" name="itemPath" onChange="imgDicShow()" oninput="pic.src=window.URL.createObjectURL(this.files[0]) " accept="image/png, image/gif, image/jpeg" >
                             </div>
                            
+                            <div class="col-1" id="show-img">
+                                    <img src="" id="pic" alt="">
+
+                                </div>
                         <input type="hidden" name="table_name" value="item_master">
 
                             <div class="col-1">

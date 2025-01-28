@@ -1,7 +1,11 @@
 <?php 
 view_load('header'); 
  view_load('navbar'); 
- 
+ if( ! $this->session->has_userdata('name'))
+{
+    redirect('LogInPage');
+}
+
 
 ?>
 
@@ -73,16 +77,39 @@ view_load('sidebar');
                         </form>
                     </div>
                     <div class="data-list col-12">
+
+                    <div class=" col-12 page-row">
+                            <div>
+                                <select>
+
+                                    <option value="2">2</option>
+                                    <option value="6">6</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                            <div class="pagination">
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+  <button type="button" class="btn btn-outline-primary" id="client_paggination">Left</button>
+
+  <button type="button" class="btn btn-outline-primary">Right</button>
+</div>
+                            </div>
+                        </div>
                         <table class="table  table-striped">
                             <th>S.No</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Phone</th>
-                            <th>Email</th>
+                            <th>Address</th>
+                            
                             <th>State</th>
                             <th>District</th>
+                            <th>Email</th>
                             <th>Delete</th>
                             <th>Update</th>
+                            <tbody class="getclients">
+
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -124,7 +151,7 @@ view_load('sidebar');
                             <label for="validationCustom04" class="form-label" >State:</label>
                             <select class="form-select" id="inputState"  name="state_id">
 
-                              <option   value="">Choose</option>
+                              <option   value="" name="">Choose</option>
                               
                               <?php 
                                 

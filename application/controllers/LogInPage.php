@@ -34,6 +34,6 @@ class LogInPage extends CI_Controller
   {
     $this->session->unset_userdata('name');
 
-    check_session('dashboard');
+    redirect(base_url()."LogInPage");
   }
 }

@@ -1,15 +1,17 @@
 <?php
 class Crud_operations extends CI_Controller
 {
-        function index() {
-                
+       
+
+        public function __construct(){
+                parent::__construct();
         }
 
         function insert()
         {
                 $validation = array(
                         array(
-                                'field' => 'create_by',
+                                'field' => 'name',
                                 'label' => 'User Name',
                                 'rules' => 'required|max_length[20]|trim',
                                 'errors' => array('required' => '%s value should not be blank'),
@@ -105,7 +107,7 @@ class Crud_operations extends CI_Controller
                 } else {
                         $staus='';
                         if(isset($_FILES['itemPath'])){
-                                $config['upload_path'] = './files/';
+                                $config['upload_path'] = './folder/';
             
                                 $config['allowed_types'] = 'jpeg|jpg|gif|png';
                                 $this->load->library('upload', $config);
@@ -117,7 +119,11 @@ class Crud_operations extends CI_Controller
                                 $form_data = $this->input->post();
                                 array_pop($form_data);
                                 $form_data['itemPath']=$path;
-                                
+                                $table_name = $this->input->post('table_name');
+                                $this->load->model('Crud_Op');
+
+                                $this->Crud_Op->insert_data($table_name, $form_data);
+
                                 $staus=200;
                                 echo json_encode(['status' => $staus]);
                         }
@@ -139,6 +145,16 @@ class Crud_operations extends CI_Controller
 
                 }
         }
+
+      
+        function edit_delete_Fun(){
+                delete_edit();
+        }
+
+
+        // function get_edit_data(){
+
+        // }
 }
 
 
