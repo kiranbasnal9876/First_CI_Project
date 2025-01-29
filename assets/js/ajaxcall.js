@@ -1,8 +1,10 @@
 var baseurl = $(".base-url").val();
 
+$(".update").hide();
+
 $(".submit").on("click", function () {
 	let formdata = new FormData(form);
-
+    formdata.append("action","insert");
 	validate();
 
 	if (checkvalidate) {
@@ -13,12 +15,12 @@ $(".submit").on("click", function () {
 			processData: false,
 			contentType: false,
 
-			success: function (data) {
+			success: function (data){
 				//    debugger;
 
 				let value = JSON.parse(data);
 				console.log(value);
-				if (value.errors > 0) {
+				if (value.errors) {
 					var inputs = $(".submit-form").find("input[type!='hidden'],select");
 					for (let i = 0; i < inputs.length; i++) {
 						const input = $(inputs[i]);
@@ -30,19 +32,23 @@ $(".submit").on("click", function () {
 						}
 					}
 				} else if (value.status == 200) {
-					alert("successfully inserted");
+					Swal.fire({
+						title: "Success",
+						icon: "data inserted successfully",
+						draggable: true
+					  });
 					$(".submit-form").trigger("reset");
+					$(" .submit-form input,select").next("span").text("");
 					paggination();
 					var editBtn = document.querySelector("#nav-home-tab");
 					var tab = new bootstrap.Tab(editBtn);
 					tab.show();
 				}
+			
 			},
 		});
 	}
 });
-
-
 
 // selecting district...........................
 
@@ -63,60 +69,72 @@ $("#inputState").on("change", function (e) {
 	});
 });
 
-
-
-
 function paggination(){
 	let data = new FormData(search_form);
+	
+	
 	$.ajax({
 		url: baseurl + "paggination",
 		type: "post",
-		data:data,
+		data: data,
 		dataType: "json",
-		processData:false,
-		contentType:false,
+		processData: false,
+		contentType: false,
 		success: function (data) {
+			$(".getlist").html(data.table);
+
+			$("#pagination-container").html(data.pagination);
 			
-			$(".getlist").html(data.users_records.table);
-			
-			$("#pagination-container").html(data.users_records.pagination);
-			// $(".getitems").html(records.item_records);
-			// $(".getclients").html(records.client_records);
 		},
 	});
 }
 
 paggination();
 
-
 // deleting element.................
 
 $(document).on("click", ".delete", function () {
-	if (confirm("are u sure")) {
-		var id = $(this).attr("id");
-		var table_name = $(this).data("table_name");
-		
-
-		$.ajax({
-			url: baseurl + "Crud_operations/edit_delete_Fun",
-			data: {
-				id: id,
-				table_name: table_name,
-				action: "delete",
-			},
-			type: "post",
-			dataType: "json",
-			success: function (data) {
-				if (data.data_for_edit == ""){
-					paggination();
-				} 
-			},
-		});
-	}
+	var id = $(this).attr("id");
+	var table_name = $(this).data("table_name");
+	Swal.fire({
+		title: "Are you sure?",
+		text: "You won't be able to revert this!",
+		icon: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#3085d6",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Yes, delete it!",
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				url: baseurl + "Crud_operations/edit_delete_Fun",
+				data: {
+					id: id,
+					table_name: table_name,
+					action: "delete",
+				},
+				type: "post",
+				dataType: "json",
+				success: function (data) {
+					if (data.data_for_edit == "deleted") {
+						Swal.fire({
+							title: "Deleted!",
+							text: "Your file has been deleted.",
+							icon: "success",
+						});
+						paggination();
+					} else if (data.data_for_edit == "") {
+						Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "You can't delete logged user!",
+						});
+					}
+				},
+			});
+		}
+	});
 });
-
-
-
 
 $(document).on("click", ".edit", function () {
 	var id = $(this).attr("id");
@@ -132,33 +150,38 @@ $(document).on("click", ".edit", function () {
 		type: "post",
 		dataType: "json",
 		success: function (data) {
-			
 			// debugger;
 			if (data.data_for_edit != "") {
-				var inputs = $("").find("input,select");
-			
-var edit_data=data.data_for_edit[0];
-
-Object.keys(edit_data).forEach(function(key) {
-	$(`.submit-form input[name=${key}]`).val(edit_data[key]); 
-	$(`.submit-form select[name=${key}]`).val(edit_data[key]); 
-
-	$("#inputState").trigger("change");
-	setTimeout(() => {
-		$(`select[name=${key}]`).val(edit_data[key]); 
-	}, 100);
-  
-  });
-
-
- 
-  $("#inputState").on("change", function (e) {
-	$("#input_district").val("");
-  });
-
-
-
 				
+
+				var edit_data = data.data_for_edit[0];
+
+				Object.keys(edit_data).forEach(function (key) {
+					$(`.submit-form input[name=${key}]`).not('[type="file"]').val(edit_data[key]);
+
+					$(`.submit-form select[name=${key}]`).val(edit_data[key]);
+					$(`.submit-form textarea[name=${key}]`).val(edit_data[key]);
+
+					$("#inputState").trigger("change");
+					setTimeout(() => {
+						$(`select[name=${key}]`).val(edit_data[key]);
+					}, 100);
+
+					   
+				});
+				
+				$("#pic").attr(
+					"src",
+					 "folder/"+edit_data.itemPath
+				  );
+				  
+					$("#show-img").show();
+               
+				$("#inputState").on("change", function (e) {
+					$("#input_district").val("");
+				});
+				$(".update").show();
+				$(".submit").hide();
 				var editBtn = document.querySelector("#nav-profile-tab");
 				var tab = new bootstrap.Tab(editBtn);
 				tab.show();
@@ -167,49 +190,36 @@ Object.keys(edit_data).forEach(function(key) {
 	});
 });
 
+// $(document).on("click", ".changeIcon", function () {
+// 	// debugger;
+//     let icon = $(this).find("i"); // Find the <i> element inside the clicked element
 
 
-$(document).on("click" , '.changeIcon' , function(){
+//     if ($(".changeIcon").find("i").hasClass('bi-arrow-up')) {
 
-
-	let icon = $(this).find("i");
+// 		$(".changeIcon").icon.removeClass('bi-arrow-up');
+// 		icon.addClass('bi-arrow-up')
   
-	  if ($(".changeIcon").find("i").hasClass('bi-chevron-up')) {
+// 	  }
+// 	  else if ($(".changeIcon").find("i").hasClass('bi-arrow-down')) {
   
-		$(".changeIcon").find("i").removeClass('bi-chevron-up');
-		icon.addClass('bi-chevron-up')
+// 		$(".changeIcon").icon.removeClass('bi-arrow-down');
+// 		icon.addClass('bi-arrow-down')
   
-	  }
-	  else if ($(".changeIcon").find("i").hasClass('bi-chevron-down')) {
+// 	  }
   
-		$(".changeIcon").find("i").removeClass('bi-chevron-down');
-		icon.addClass('bi-chevron-down')
-  
-	  }
-  
-	  if (icon.hasClass('')) {
-		icon.addClass('bi-chevron-up');
-	  }
-	  else if (icon.hasClass('bi-chevron-up')) {
-		icon.removeClass('bi-chevron-up').addClass('bi-chevron-down');
-	  }
-	  else {
-		icon.removeClass('bi-chevron-down').addClass('bi-chevron-up');
-	  }
+// 	  if (icon.hasClass('')) {
+// 		icon.addClass('bi-arrow-up');
+// 	  }
+// 	  else if (icon.hasClass('bi-arrow-up')) {
+// 		icon.removeClass('bi-arrow-up').addClass('bi-arrow-down');
+// 	  }
+// 	  else {
+// 		icon.removeClass('bi-arrow-down').addClass('bi-arrow-up');
+// 	  }
 	
   
-  })
-
-
-
-
-
-
-
-
-
-
-
+// });
 
 let image = $("#pic");
 if (image.attr("src") == "") {
@@ -222,10 +232,9 @@ function imgDicShow() {
 	$("#show-img").show();
 }
 
+// Pagination logic
 
-// Pagination logic 
-
-// next btn 
+// next btn
 
 // next button pagination
 $(document).on("click", "#pagination_right", function () {
@@ -238,7 +247,6 @@ $(document).on("click", "#pagination_right", function () {
 	}
 });
 
-
 // previous button pagination
 $(document).on("click", "#pagination_left", function () {
 	let page = $("#current_page").val();
@@ -250,32 +258,96 @@ $(document).on("click", "#pagination_left", function () {
 });
 
 // limit
-$("#selected_row").on('input',function(){
-
+$("#selected_row").on("input", function () {
 	let value = $(this).val();
 
 	$("#limit").val(value);
+	$("#current_page").val(1);
+	paggination();
+});
+
+// sorting
+let sorting = "DESC";
+$(".changeIcon").on("click", function () {
+	$colname=$(this).attr("id");
+	$("#sort_column").val($colname);
+	if (sorting == "DESC") {
+		sorting = "ASC";
+	} else {
+		sorting = "DESC";
+	}
+
+	let sort_column = $(this).attr("id");
+
+	$("#sort_order").val(sorting);
+
+	$("#sort_column").val(sort_column);
 
 	paggination();
+});
 
-} )
 
-// sorting 
-let sorting = "DESC";
-$(".changeIcon").on('click' , function(){
 
-if(sorting == "DESC"){
-	sorting = "ASC";
-}else{
-	sorting = "DESC";
-}
-
-let sort_column = $(this).attr('id');
-
-$("#sort_order").val(sorting);
-
-$("#sort_column").val(sort_column);
-
+$("#search").on("input",function(){
 paggination();
+});
 
+$("#reset").on("click",function(){
+	setTimeout(function(){
+		paggination();
+	},100);
+	
 })
+
+
+//updating values...........................
+$(".update").on("click", function () {
+	let formdata = new FormData(form);
+	formdata.append("action","update");
+
+	updatevalidation();
+
+	if (check_update) {
+		$.ajax({
+			url: baseurl + "Crud_operations/update",
+			type: "post",
+
+			data:formdata,
+				
+			processData: false,
+			contentType: false,
+            dataType:"json",
+			success: function (data){
+				 if (data.status == 200) {
+					Swal.fire({
+						title: "Success",
+						icon: "data updated successfully",
+						draggable: true
+					  });
+					$(".submit-form").trigger("reset");
+					$("#show-img").hide();
+					paggination();
+					var editBtn = document.querySelector("#nav-home-tab");
+					var tab = new bootstrap.Tab(editBtn);
+					tab.show();
+				}
+			}
+
+		})
+
+	}
+});
+
+
+
+
+
+
+
+$("#nav-home-tab").on("click",function(){
+	$(".submit-form").trigger("reset");
+	$(" .submit-form input,select").next("span").text("");
+	$(".update").hide();
+    $(".submit").show();
+  })
+  

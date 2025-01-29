@@ -85,7 +85,10 @@ html {
 
     .logo {
       img {
-        width: 60%;
+        width: 50%;
+      }
+      i{
+        padding-left: 15px;
       }
     }
 
@@ -181,13 +184,17 @@ html {
           #5e7b99;
         color: white;
 
-
+       white-space: nowrap;
       }
 
       td {
         button {
           margin: 0px;
           padding: 0px;
+        }
+        img{
+          width: 50px;
+          height: auto;
         }
 
       }

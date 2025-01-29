@@ -30,6 +30,8 @@ function records($table_name,$data){
     
     $pages .='<button type="button" class="btn btn-outline-primary" id="pagination_right">Right</button>';
             
+
+    // print_r($data_table);
             for($i=0;$i<count($data_table);$i++){
                 $s_no = $i+1;
                 $output .="<tr><td>{$s_no}</td>";
@@ -39,8 +41,13 @@ function records($table_name,$data){
                 {
                     // print_r($key);die;
 
-                    if($key == "PASSWORD" || $key == "pincode" ){
+                    if($key == "PASSWORD"  ||$key=="state_id"||$key=="district_id"||$key=="state_code"){
                         continue;
+                    }
+                    else if($key=="itemPath"){
+                        $output.=  "<td><img src='folder/$value'></td>";
+                      continue;
+                      
                     }
                     $output .="<td>{$value}</td>";
                 }

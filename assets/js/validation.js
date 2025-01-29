@@ -96,8 +96,8 @@ $("  .submit-form   input, select").on("input change", function () {
   
 
 
-var checkvalidate=true;
 
+var checkvalidate=true;
 function validate() { 
 
   $(".submit-form input[type!='hidden'] , select  ").each(function () {
@@ -122,19 +122,47 @@ function validate() {
 
 // validate function when updating data
 
+let check_update = true; 
 
-function updatevalidation(e) {
-  let checkvalidate = true;  
+function updatevalidation() {
+
+
   
-  $("input:not([type='hidden']):not([type='password']):not([type='file'])").each(function () {
+  $(".submit-form input:not([type='hidden']):not([type='password']):not([type='file'])").each(function(){
+
     if ($(this).val() == "") {
-      $(this).next().text("This field is required");
-      checkvalidate = false; 
-      return false;  
-    } else {
-      $(this).next().text(""); 
+      $(this).next('.error-message').remove();
+      $(this).after("<span class='error-message'></span>"); 
+      $name=  $(this).prev("label").text();
+ 
+   
+      $(this).next("span").text($name.slice(0,-1)+" is required");
+      check_update = false; 
+     
+    }else {
+      check_update = true; 
     }
   });
   
-  return checkvalidate; 
+  
 }
+
+
+$(".sidebar_slide").click(function(){
+
+  if($(this).hasClass("slide")){
+
+      $(this).removeClass("slide").addClass("noSlide");
+      $(".sidebar").find("span").hide();
+      $(".sidebar").css("flex","0.1");
+      $(".content").css("flex","11.9");
+  }
+  else{
+
+    $(this).removeClass('noSlide').addClass("slide");
+    $(".sidebar").find("span").show();
+    $(".sidebar").css("flex","2");
+    $(".content").css("flex","10");
+  }
+
+})

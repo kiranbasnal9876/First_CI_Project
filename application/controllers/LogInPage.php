@@ -20,19 +20,22 @@ class LogInPage extends CI_Controller
     $this->load->model('Get_Data');
     $data = $this->Get_Data->loggin_user($email, $password);
    
-   $this->session->set_userdata('name',$data[0]);
+  // print_r($data);
       
-    if ($data == "") {
+    if ($data == []){
       $status = 400;
     } else {
+      $this->session->set_userdata('log_user_data',$data[0]);
+      
       $status = 200;
     }
+   
     echo  json_encode(['status' => $status]);
   }
 
   function log_out()
   {
-    $this->session->unset_userdata('name');
+    $this->session->unset_userdata('log_user_data');
 
     redirect(base_url()."LogInPage");
   }

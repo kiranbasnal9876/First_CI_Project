@@ -1,7 +1,7 @@
 <?php 
 
 
-if($this->session->has_userdata('name'))
+if($this->session->has_userdata('log_user_data'))
 {
    
     redirect(base_url()."All_Masters/dashboard");

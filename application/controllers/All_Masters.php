@@ -57,3 +57,4 @@ class All_Masters extends CI_Controller
         }
     }
 }
+

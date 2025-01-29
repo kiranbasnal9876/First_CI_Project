@@ -1,7 +1,7 @@
 <?php 
 view_load('header'); 
 view_load('navbar'); 
-if( ! $this->session->has_userdata('name'))
+if( ! $this->session->has_userdata('log_user_data'))
 {
     redirect('LogInPage');
 }

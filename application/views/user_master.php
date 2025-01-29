@@ -2,9 +2,9 @@
 view_load('header');
 view_load('navbar');
 $this->form_validation->run();
-// echo validation_errors();
+echo validation_errors();
 
-if (! $this->session->has_userdata('name')) {
+if (! $this->session->has_userdata('log_user_data')) {
     header("Location:" . base_url() . "LogInPage");
 }
 ?>
@@ -30,7 +30,7 @@ if (! $this->session->has_userdata('name')) {
                 <div class="row records-div ">
 
                     <div class="search-data col-12">
-                        <form class="row g-3 " name="search_form">
+                        <form class="row g-3  " id="search" name="search_form">
                             <div class="col-md-2">
                                 <label for="validationCustom01" class="form-label">ID:</label>
                                 <input type="number" class="form-control numeric" id="validationCustom01" value="" name="id">
@@ -59,8 +59,9 @@ if (! $this->session->has_userdata('name')) {
                             <input type="hidden" name="row_no" id="limit" value="2">
                             <input type="hidden" name="colname" value="id" id="sort_column">
                             <input type="hidden" name="order" value="DESC" id="sort_order">
+                            <input type="hidden" name="table_name" class="table" value="user_master">
                             <div class="col-1">
-                                <button type='button' class="btn btn-secondary button">Reset</button>
+                                <button type='reset' class="btn btn-secondary button" id="reset">Reset</button>
                             </div>
                         </form>
                     </div>
@@ -75,9 +76,7 @@ if (! $this->session->has_userdata('name')) {
                             </div>
                             <div class="pagination">
                                 <div class="btn-group" role="group" aria-label="Basic outlined example" id="pagination-container">
-                                    <!-- <button type="button" class="btn btn-outline-primary" id="pagination_left">Left</button>
-
-                                    <button type="button" class="btn btn-outline-primary" id="pagination_right">Right</button> -->
+                                   
                                 </div>
                             </div>
                         </div>
@@ -86,8 +85,8 @@ if (! $this->session->has_userdata('name')) {
                             <th>S.No</th>
                             <th class="changeIcon" id="id" ><i class="bi bi-chevron-expand"></i>ID</th>
                             <th class="changeIcon" id="name" ><i class="bi bi-chevron-expand"></i>Name</th>
-                            <th class="changeIcon" id="phone" ><i class="bi bi-chevron-expand"></i>Phone</th>
                             <th class="changeIcon" id="email" ><i class="bi bi-chevron-expand"></i>Email</th>
+                            <th class="changeIcon" id="phone" ><i class="bi bi-chevron-expand"></i>Phone</th>
                             <th>Delete</th>
                             <th>Update</th>
                             <tbody class="getlist"></tbody>
@@ -130,6 +129,7 @@ if (! $this->session->has_userdata('name')) {
                             <input type="hidden" name="table_name" class="table" value="user_master">
                             <div class="col-1">
                                 <button type="button" class="btn btn-secondary button submit">Submit</button>
+                                <button type="button" class="btn btn-secondary button update">Update</button>
                             </div>
                         </form>
                     </div>

@@ -9,6 +9,7 @@ class Crud_operations extends CI_Controller
 
         function insert()
         {
+
                 $validation = array(
                         array(
                                 'field' => 'name',
@@ -24,12 +25,22 @@ class Crud_operations extends CI_Controller
                         array(
                                 'field' => 'email',
                                 'label' => 'Email',
-                                'rules' => 'required|valid_email|trim'
+                                'rules' => 'required|valid_email|is_unique[user_master.email]|trim'
+                        ),
+                        array(
+                                'field' => 'email',
+                                'label' => 'Client Email',
+                                'rules' => 'required|valid_email|is_unique[client_master.email]|trim'
                         ),
                         array(
                                 'field' => 'phone',
                                 'label' => 'Phone',
-                                'rules' => 'required|min_length[10]|max_length[12]|trim'
+                                'rules' => 'required|min_length[10]|max_length[12]|is_unique[user_master.phone]|trim'
+                        ),
+                        array(
+                                'field' => 'phone',
+                                'label' => 'Phone Number',
+                                'rules' => 'required|min_length[10]|max_length[12]|is_unique[client_master.phone]|trim'
                         ),
                         array(
                                 'field' => 'pincode',
@@ -104,7 +115,9 @@ class Crud_operations extends CI_Controller
                         $error = $this->form_validation->error_array();
 
                         echo json_encode(['errors' => $error]);
-                } else {
+                } 
+                
+                else {
                         $staus='';
                         if(isset($_FILES['itemPath'])){
                                 $config['upload_path'] = './folder/';
@@ -115,30 +128,36 @@ class Crud_operations extends CI_Controller
                                 $this->upload->do_upload('itemPath');
                                 
         
-                                $path=$this->upload->data('full_path');
+                                $path=$this->upload->data('file_name');
                                 $form_data = $this->input->post();
-                                array_pop($form_data);
+                             
+                                array_splice($form_data ,-2);
+                                
                                 $form_data['itemPath']=$path;
                                 $table_name = $this->input->post('table_name');
+                                $action = $this->input->post('action');
                                 $this->load->model('Crud_Op');
 
-                                $this->Crud_Op->insert_data($table_name, $form_data);
+                                $this->Crud_Op->insert_data($table_name, $form_data,$action);
 
                                 $staus=200;
                                 echo json_encode(['status' => $staus]);
                         }
                        
                        else{
-                             
+                        
                         $form_data = $this->input->post();
-                        array_pop($form_data);
+                        
+                        array_splice($form_data ,-2);
+                        $action = $this->input->post('action');
                                    
                         //    print_r($form_data);
                        
                         $table_name = $this->input->post('table_name');
 
                         $this->load->model('Crud_Op');
-                        $this->Crud_Op->insert_data($table_name, $form_data);
+                        $this->Crud_Op->insert_data($table_name, $form_data,$action);
+
                         $staus=200;
                         echo json_encode(['status' => $staus]);
                        }
@@ -152,9 +171,55 @@ class Crud_operations extends CI_Controller
         }
 
 
-        // function get_edit_data(){
+       function update(){
+        
 
-        // }
+        if(isset($_FILES['itemPath'])){
+                $config['upload_path'] = './folder/';
+
+                $config['allowed_types'] = 'jpeg|jpg|gif|png';
+                $this->load->library('upload', $config);
+
+                $this->upload->do_upload('itemPath');
+                
+
+                $path=$this->upload->data('file_name');
+                $form_data = $this->input->post();
+             
+                array_splice($form_data ,-2);
+
+               
+
+                if($path!=""){
+                        $form_data['itemPath']=$path;
+                }
+                $table_name = $this->input->post('table_name');
+                $action = $this->input->post('action');
+                $this->load->model('Crud_Op');
+
+                $this->Crud_Op->insert_data($table_name, $form_data,$action);
+
+                $staus=200;
+                echo json_encode(['status' => $staus]);
+        }    else{
+                        
+                $form_data = $this->input->post();
+                
+                array_splice($form_data ,-2);
+                $action = $this->input->post('action');
+                           
+                //    print_r($form_data);
+               
+                $table_name = $this->input->post('table_name');
+
+                $this->load->model('Crud_Op');
+                $this->Crud_Op->insert_data($table_name, $form_data,$action);
+
+                $staus=200;
+                echo json_encode(['status' => $staus]);
+               }
+
+       }
 }
 
 
