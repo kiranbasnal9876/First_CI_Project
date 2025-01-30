@@ -171,6 +171,7 @@ html {
         .search-data {
 
           button {
+
             margin-top: 25px;
 
           }
@@ -183,11 +184,13 @@ html {
         background-color:
           #5e7b99;
         color: white;
+        user-select: none;
 
        white-space: nowrap;
       }
 
       td {
+     
         button {
           margin: 0px;
           padding: 0px;
@@ -230,5 +233,26 @@ html {
     width: 40px;
     height: 50px;
 
+  }
+}
+
+
+.add-more{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  input{
+    height: 35px;
+  }
+}
+
+.add-new{
+  padding: 0px 0px 21px 21px;
+  
+ margin : 18px 18px 20px 0px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  button{
+    margin-top: 20px;
   }
 }

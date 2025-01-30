@@ -166,3 +166,11 @@ $(".sidebar_slide").click(function(){
   }
 
 })
+
+let url = window.location.href;
+// console.log(currentLocation.href);
+
+const array = url.split('/');
+
+const lastsegment = array[array.length-1];
+$(`#${lastsegment}`).addClass("active");

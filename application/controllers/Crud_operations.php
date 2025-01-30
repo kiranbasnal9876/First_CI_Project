@@ -220,6 +220,33 @@ class Crud_operations extends CI_Controller
                }
 
        }
+
+       function invoiceNumber(){
+
+        $this->load->model('crud_op');
+        $result = $this->crud_op->genrateInvoice();
+
+        echo $result;
+
+
+       }
+
+       // client auto complete 
+       function clientAutocomplete(){
+
+               $name = $this->input->post();
+                $this->load->model('crud_op');
+                echo $this->crud_op->clientComplete($name);
+
+       }
+
+       // item auto complete
+
+       function itemAutoComplete(){
+        $data = $this->input->post();
+        $this->load->model('crud_op');
+        echo $this->crud_op->itemComplete($data);
+       }
 }
 
 

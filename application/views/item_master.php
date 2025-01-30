@@ -61,10 +61,10 @@ view_load('sidebar');
                         </div>
                         <table class="table  table-striped">
                             <th>S.No</th>
-                            <th class="changeIcon" id="id"><i class="bi bi-chevron-expand">ID</th>
-                            <th class="changeIcon" id="itemName"><i class="bi bi-chevron-expand"> Item Name</th>
-                            <th class="changeIcon" id="itemPrice"><i class="bi bi-chevron-expand">Item Price</th>
-                            <th class="changeIcon" id="itemD"><i class="bi bi-chevron-expand">Item Description</th>
+                            <th class="changeIcon" id="id"><i class="bi bi-chevron-expand"></i>ID</th>
+                            <th class="changeIcon" id="itemName"><i class="bi bi-chevron-expand"></i> Item Name</th>
+                            <th class="changeIcon" id="itemPrice"><i class="bi bi-chevron-expand"></i> Price</th>
+                            <th class="changeIcon" id="itemD"><i class="bi bi-chevron-expand"></i> Description</th>
                             <th >Item Image</th>
                             
                             <th>Delete</th>

@@ -40,6 +40,16 @@ class Get_Data extends CI_Model
 
             $this->db->select(" client_master.id,client_master.name,client_master.phone,client_master.email,CONCAT_WS(', ', client_master.address, client_master.pincode,dm.district_name,sm.state_name) AS address");
         }
+        if ($table_name == 'invoice_master') {
+
+            $this->db->join("client_master cm ", "invoice_master.client_id  =  cm.id");
+            $this->db->join("state_master sm ", "sm.state_id=cm.state_id");
+            $this->db->join("district_master dm ", "dm.district_id=cm.district_id");
+
+            $this->db->select("invoice_master.id, invoice_master.invoice_no,invoice_date,name,CONCAT_WS(', ', cm.address, cm.pincode,dm.district_name,sm.state_name) AS address,email,phone,total_amount");
+        
+            
+        }
         
         $records = $this->db->get("", $limit, $offset)->result_array();
 

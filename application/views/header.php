@@ -9,6 +9,7 @@
     <base href="<?=base_url() ?>">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/ci_project.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.css">
     <link rel="stylesheet" href="assets/css/bootstrap_icon.css">
 </head>
 <body>

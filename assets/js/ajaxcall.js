@@ -93,6 +93,7 @@ paggination();
 
 // deleting element.................
 
+
 $(document).on("click", ".delete", function () {
 	var id = $(this).attr("id");
 	var table_name = $(this).data("table_name");
@@ -190,37 +191,8 @@ $(document).on("click", ".edit", function () {
 	});
 });
 
-// $(document).on("click", ".changeIcon", function () {
-// 	// debugger;
-//     let icon = $(this).find("i"); // Find the <i> element inside the clicked element
 
-
-//     if ($(".changeIcon").find("i").hasClass('bi-arrow-up')) {
-
-// 		$(".changeIcon").icon.removeClass('bi-arrow-up');
-// 		icon.addClass('bi-arrow-up')
   
-// 	  }
-// 	  else if ($(".changeIcon").find("i").hasClass('bi-arrow-down')) {
-  
-// 		$(".changeIcon").icon.removeClass('bi-arrow-down');
-// 		icon.addClass('bi-arrow-down')
-  
-// 	  }
-  
-// 	  if (icon.hasClass('')) {
-// 		icon.addClass('bi-arrow-up');
-// 	  }
-// 	  else if (icon.hasClass('bi-arrow-up')) {
-// 		icon.removeClass('bi-arrow-up').addClass('bi-arrow-down');
-// 	  }
-// 	  else {
-// 		icon.removeClass('bi-arrow-down').addClass('bi-arrow-up');
-// 	  }
-	
-  
-// });
-
 let image = $("#pic");
 if (image.attr("src") == "") {
 	$("#show-img").hide();
@@ -346,8 +318,38 @@ $(".update").on("click", function () {
 
 $("#nav-home-tab").on("click",function(){
 	$(".submit-form").trigger("reset");
+	$(".submit-form input[type='hidden']").val("");
 	$(" .submit-form input,select").next("span").text("");
 	$(".update").hide();
     $(".submit").show();
+	$(".delete-item").trigger('click');
   })
+
+
+  // generating invoice number
+function generateInvoiceNo(){
+
+	$.ajax({
+
+		url: baseurl+"crud_operations/invoiceNumber",
+		type: "POST",
+		success: function(data) {
+
+			
+			data = JSON.parse(data);
+			console.log(data);
+
+			data = data.id;
+
+			let invoice_number = "100"+(Number(data)+1);
+
+			$("#invoice").val(invoice_number);
+
+		}
+
+	})
+
+}
+
+generateInvoiceNo();
   
