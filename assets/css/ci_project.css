@@ -26,6 +26,9 @@ html {
   color: red;
 }
 
+.right{
+  text-align: right;
+}
 
 .image-div {
   height: 100vh;
@@ -185,12 +188,14 @@ html {
           #5e7b99;
         color: white;
         user-select: none;
-
+        font-size: 12px;
        white-space: nowrap;
+       margin: 0px;
+       padding: 5px;
       }
 
       td {
-     
+      font-size: 12px;
         button {
           margin: 0px;
           padding: 0px;

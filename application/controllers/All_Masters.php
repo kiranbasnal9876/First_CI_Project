@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+
 class All_Masters extends CI_Controller
 {
 
@@ -56,5 +57,7 @@ class All_Masters extends CI_Controller
             echo "<option value='{$data[$i]['district_id']}'>{$data[$i]['district_name']}</option>";
         }
     }
+
+   
 }
 

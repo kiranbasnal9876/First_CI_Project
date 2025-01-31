@@ -22,7 +22,7 @@ function delete_edit(){
     $table_name = $CI ->input->post('table_name');
     $action=$CI ->input->post('action');
     $CI ->load->model('Crud_Op');
-  $data=  $CI ->Crud_Op->delete_data($id,$table_name,$action);
+  $data=  $CI->Crud_Op->delete_data($id,$table_name,$action);
   
   echo json_encode(['data_for_edit'=>$data]);
 

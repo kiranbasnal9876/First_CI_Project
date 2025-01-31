@@ -83,10 +83,10 @@ if (! $this->session->has_userdata('log_user_data')) {
 
                         <table class="table  table-striped">
                             <th>S.No</th>
-                            <th class="changeIcon" id="id" ><i class="bi bi-chevron-expand"></i>ID</th>
-                            <th class="changeIcon" id="name" ><i class="bi bi-chevron-expand"></i>Name</th>
-                            <th class="changeIcon" id="email" ><i class="bi bi-chevron-expand"></i>Email</th>
-                            <th class="changeIcon" id="phone" ><i class="bi bi-chevron-expand"></i>Phone</th>
+                            <th class="changeIcon" id="id" ><i class="bi bi-chevron-down"></i>ID</th>
+                            <th class="changeIcon" id="name" ><i class="bi bi-chevron-down"></i>Name</th>
+                            <th class="changeIcon" id="email" ><i class="bi bi-chevron-down"></i>Email</th>
+                            <th class="changeIcon" id="phone" ><i class="bi bi-chevron-down"></i>Phone</th>
                             <th>Delete</th>
                             <th>Update</th>
                             <tbody class="getlist"></tbody>

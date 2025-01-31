@@ -52,15 +52,11 @@ class Crud_operations extends CI_Controller
                                 'label' => 'Price',
                                 'rules' => 'required|min_length[2]|max_length[10]|trim'
                         ),
-                        array(
-                                'field' => 'itemName',
-                                'label' => 'Item Name ',
-                                'rules' => 'required|min_length[2]|max_length[10]|trim'
-                        ),
+                     
                         array(
                                 'field' => 'itemD',
                                 'label' => 'Item Description ',
-                                'rules' => 'required|min_length[2]|max_length[10]|trim'
+                                'rules' => 'required|trim'
                         ),
                         array(
                                 'field' => 'amount',
@@ -91,10 +87,12 @@ class Crud_operations extends CI_Controller
                                 'rules' => 'required|trim'
                         ),
                         array(
-                                'field' => 'itemD',
-                                'label' => 'item Description',
-                                'rules' => 'required|trim'
+                                'field' => 'itemName',
+                                'label' => 'Item Name',
+                                'rules' => 'required|is_unique[item_master.itemName]|trim'
                         ),
+                       
+                       
 
                 );
 
@@ -197,10 +195,8 @@ class Crud_operations extends CI_Controller
                 $action = $this->input->post('action');
                 $this->load->model('Crud_Op');
 
-                $this->Crud_Op->insert_data($table_name, $form_data,$action);
+              echo  $this->Crud_Op->insert_data($table_name, $form_data,$action);
 
-                $staus=200;
-                echo json_encode(['status' => $staus]);
         }    else{
                         
                 $form_data = $this->input->post();
@@ -213,40 +209,22 @@ class Crud_operations extends CI_Controller
                 $table_name = $this->input->post('table_name');
 
                 $this->load->model('Crud_Op');
-                $this->Crud_Op->insert_data($table_name, $form_data,$action);
+             echo   $this->Crud_Op->insert_data($table_name, $form_data,$action);
 
-                $staus=200;
-                echo json_encode(['status' => $staus]);
+                
                }
 
        }
 
-       function invoiceNumber(){
-
-        $this->load->model('crud_op');
-        $result = $this->crud_op->genrateInvoice();
-
-        echo $result;
 
 
-       }
 
-       // client auto complete 
-       function clientAutocomplete(){
 
-               $name = $this->input->post();
-                $this->load->model('crud_op');
-                echo $this->crud_op->clientComplete($name);
 
-       }
 
-       // item auto complete
+       
+      
 
-       function itemAutoComplete(){
-        $data = $this->input->post();
-        $this->load->model('crud_op');
-        echo $this->crud_op->itemComplete($data);
-       }
 }
 
 

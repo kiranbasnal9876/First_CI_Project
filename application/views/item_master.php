@@ -61,10 +61,10 @@ view_load('sidebar');
                         </div>
                         <table class="table  table-striped">
                             <th>S.No</th>
-                            <th class="changeIcon" id="id"><i class="bi bi-chevron-expand"></i>ID</th>
-                            <th class="changeIcon" id="itemName"><i class="bi bi-chevron-expand"></i> Item Name</th>
-                            <th class="changeIcon" id="itemPrice"><i class="bi bi-chevron-expand"></i> Price</th>
-                            <th class="changeIcon" id="itemD"><i class="bi bi-chevron-expand"></i> Description</th>
+                            <th class="changeIcon" id="id"><i class="bi bi-chevron-down"></i>ID</th>
+                            <th class="changeIcon" id="itemName"><i class="bi bi-chevron-down"></i> Item Name</th>
+                            <th class="changeIcon" id="itemPrice"><i class="bi bi-chevron-down"></i> Price</th>
+                            <th class="changeIcon" id="itemD"><i class="bi bi-chevron-down"></i> Description</th>
                             <th >Item Image</th>
                             
                             <th>Delete</th>
@@ -94,7 +94,7 @@ view_load('sidebar');
                                 <label for="validationCustomUsername" class="form-label"> Price<span class="error-message">*</span></label>
                                
 
-                                    <input type="text" class="form-control price" id="validationCustomUsername" name="itemPrice" maxlength="10">
+                                    <input type="text" class="form-control price right" id="validationCustomUsername" name="itemPrice" maxlength="10">
 
                               
                             </div>

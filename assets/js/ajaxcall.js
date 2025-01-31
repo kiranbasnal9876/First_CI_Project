@@ -146,15 +146,13 @@ $(document).on("click", ".edit", function () {
 		data: {
 			id: id,
 			table_name: table_name,
-			action: "update",
+			action: "edit",
 		},
 		type: "post",
 		dataType: "json",
 		success: function (data) {
 			// debugger;
 			if (data.data_for_edit != "") {
-				
-
 				var edit_data = data.data_for_edit[0];
 
 				Object.keys(edit_data).forEach(function (key) {
@@ -170,7 +168,26 @@ $(document).on("click", ".edit", function () {
 
 					   
 				});
+                 if(data.data_for_edit['total_amount'] !=""){
+
+					 for (let i = 0; i < data.data_for_edit.length; i++) {
+						 if (i > 0) {
+						   $("#add-more").trigger("click");
+						 }
+						 // console.log("data.output2[i]", data.output2[i]);
+						 var currentClone = $(".clone").eq(i);
+						 currentClone.find(".inputitem").val(data.data_for_edit[i].itemName);
+						 currentClone.find(".item_id").val(data.data_for_edit[i].item_id);
+						 currentClone.find(".Item").val(data.data_for_edit[i].quantity);
+						 currentClone.find(".price").val(data.data_for_edit[i].itemPrice);
+						 currentClone.find(".Amount").val(data.data_for_edit[i].amount);
+						 currentClone.find(".invoice_id").val(data.data_for_edit[i].invoice_id);
+				 
+					   }
+			     
+				$(".submit_invoice").hide();
 				
+				 }				
 				$("#pic").attr(
 					"src",
 					 "folder/"+edit_data.itemPath
@@ -261,6 +278,7 @@ $(".changeIcon").on("click", function () {
 
 
 $("#search").on("input",function(){
+	$("#current_page").val(1);
 paggination();
 });
 
@@ -290,6 +308,7 @@ $(".update").on("click", function () {
 			contentType: false,
             dataType:"json",
 			success: function (data){
+			
 				 if (data.status == 200) {
 					Swal.fire({
 						title: "Success",
@@ -298,6 +317,9 @@ $(".update").on("click", function () {
 					  });
 					$(".submit-form").trigger("reset");
 					$("#show-img").hide();
+					$(".update").hide();
+                   $(".submit").show();
+                   $(".submit_invoice").show();
 					paggination();
 					var editBtn = document.querySelector("#nav-home-tab");
 					var tab = new bootstrap.Tab(editBtn);
@@ -318,38 +340,20 @@ $(".update").on("click", function () {
 
 $("#nav-home-tab").on("click",function(){
 	$(".submit-form").trigger("reset");
-	$(".submit-form input[type='hidden']").val("");
+	// $(".submit-form input[type='hidden']").val("");
 	$(" .submit-form input,select").next("span").text("");
 	$(".update").hide();
     $(".submit").show();
+	$(".submit_invoice").show();
 	$(".delete-item").trigger('click');
+  });
+
+  $("#nav-profile-tab").on("click",function(){
+	$(".update").hide();
+    $(".submit").show();
+	$(".submit_invoice").show();
+	$(".delete-item").trigger('click');
+	generateInvoiceNo();
+	invoice_date();
   })
 
-
-  // generating invoice number
-function generateInvoiceNo(){
-
-	$.ajax({
-
-		url: baseurl+"crud_operations/invoiceNumber",
-		type: "POST",
-		success: function(data) {
-
-			
-			data = JSON.parse(data);
-			console.log(data);
-
-			data = data.id;
-
-			let invoice_number = "100"+(Number(data)+1);
-
-			$("#invoice").val(invoice_number);
-
-		}
-
-	})
-
-}
-
-generateInvoiceNo();
-  

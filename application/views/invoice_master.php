@@ -31,7 +31,7 @@ if (! $this->session->has_userdata('log_user_data')) {
                         <form class="row g-3 needs-validation" name="search_form" id="search" novalidate>
                             <div class="col-md-2">
                                 <label for="validationCustom01" class="form-label">Invoice No:</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="" name="invoice_no" required>
+                                <input type="number" class="form-control numeric" id="validationCustom01" value="" name="invoice_no" required>
 
                             </div>
                             <div class="col-md-2">
@@ -43,7 +43,7 @@ if (! $this->session->has_userdata('log_user_data')) {
                                 <label for="validationCustomUsername" class="form-label">Phone:</label>
                                 <div class="input-group has-validation">
 
-                                    <input type="text" class="form-control" id="validationCustomUsername" name="phone" required>
+                                    <input type="number" class="form-control  numeric" id="validationCustomUsername" name="phone" required>
 
                                 </div>
                             </div>
@@ -112,21 +112,63 @@ if (! $this->session->has_userdata('log_user_data')) {
                         </table>
                     </div>
                 </div>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Email</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form name="email_form" id="email-model-form">
+                                                        <div class="mb-3 ">
+                                                            <label for="sender-name" class="text-start">Sender:</label>
+                                                            <input type="text" class="form-control" id="sender-name" placeholder="dimpalbasnal0@gmail.com" readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                                            <input type="text" class="form-control" id="recipient-name" name="send_to" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recipient-name" class="col-form-label">Subject:</label>
+                                                            <input type="text" class="form-control" id="recipient-name" name="subject">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="message-text" class="col-form-label">Message:</label>
+                                                            <textarea class="form-control" id="message-text" name="content"></textarea>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                         
+                                                           <input type="hidden" value="" id="invoice_no_for_pdf" name='pdf_invoice'>
+                                                        </div>
+                                                        
+
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
+                                                    <button type="button" class="btn btn-primary" id="send_email">Send message</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
             </div>
+
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <div class="row records-div ">
-                    
+                <form class="row g-3 submit-form" name="form">
                     <div class="search-data col-12">
 
-
+                   
                             <input type="hidden" class="form-control" id="validationCustom01" value="">
 
 
                             <div class="row mb-3">
                                 <div class="col-3">
                                     <label for="invoice" class="form-label">Invoice No<span class="error-message">*</span></label>
-                                    <input type="text" class="form-control invoic" name="invoice_no" id="invoice" maxlength="15" minlength="100">
-                                    <input type="hidden" class="invoice_id" name="invoice_id" value="">
+                                    <input type="number" class="form-control numeric invoic" name="invoice_no" id="invoice" maxlength="15" minlength="100">
+                                    <input type="hidden" class="invoice_id" name="id" value="">
                                 </div>
                                 <div class="col-3">
                                     <label for="invoice_date" class="form-label">Invoice Date<span class="error-message">*</span></label>
@@ -147,7 +189,7 @@ if (! $this->session->has_userdata('log_user_data')) {
 
                                 <div class="col-md-3">
                                     <label for="inputphone" class="form-label">Phone<span class="error-message">*</span></label>
-                                    <input type="text" class="form-control numeric" id="inputphone" maxlength="12" name="phone" readonly>
+                                    <input type="text" class="form-control numeric" id="inputphone" maxlength="12" name="phone" readonly maxlength="12">
 
                                 </div>
 
@@ -206,15 +248,15 @@ if (! $this->session->has_userdata('log_user_data')) {
                                     <input type="text" class="form-control right" id="total-amount" name="total_amount" readonly>
                                 </div>
                             </div>
-                            
-                        <input type="hidden" name="table_name" value="invoice_master">
+                            <input type="hidden" name="table_name" value="invoice_master">
+                        
                             <div class="col-1">
                                 <button type="button" class="btn btn-secondary button update">Update</button>
-                                <button class="btn btn-secondary button submit" type="button">Submit</button>
+                                <button class="btn btn-secondary button submit_invoice" type="button">Submit</button>
                             </div>
 
 
-
+                                     
 
 
                         </form>

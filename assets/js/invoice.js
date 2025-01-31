@@ -155,7 +155,7 @@ $(document).on("keyup", ".inputitem", function () {
 
     source: function (request, response) {
       $.ajax({
-        url: baseurl+ "crud_operations/itemAutoComplete",
+        url: baseurl+ "Invoice_crudOperations/itemAutoComplete",
         data: {
           value: value,
           items_id: items_array,
@@ -218,7 +218,7 @@ $(document).on("keyup", ".clients", function () {
     minLength: 1,
     source: function (request, response) {
       $.ajax({
-        url: baseurl + "crud_operations/clientAutocomplete",
+        url: baseurl + "Invoice_crudOperations/clientAutocomplete",
         data: {
           name: request.term,
           // action: "getclientdata",
@@ -252,3 +252,140 @@ $(document).on("keyup", ".clients", function () {
     },
   });
 });
+
+
+
+
+  // generating invoice number
+  function generateInvoiceNo(){
+
+    $.ajax({
+  
+      url: baseurl+"Invoice_crudOperations/invoiceNumber",
+      type: "POST",
+      success: function(data) {
+  
+        
+        data = JSON.parse(data);
+        console.log(data);
+  
+        data = data.id;
+  
+        let invoice_number = "100"+(Number(data)+1);
+  
+        $("#invoice").val(invoice_number);
+  
+      }
+  
+    })
+  
+  }
+  
+  generateInvoiceNo();
+    
+  
+  
+  
+  //insert invoice data
+  
+  $(document).on("click", ".submit_invoice",function () {
+    let formdata = new FormData(form);
+      
+    validate();
+
+    if($("#total-amount").val()==0){
+      $(".Item") .next('.error-message').remove();
+      $(".Item").after("<span class='error-message'></span>"); 
+     
+ 
+   
+      $(".Item").next("span").text(" Qantity  can't 0");
+      checkvalidate=false;
+    }
+  
+    if (checkvalidate) {
+      $.ajax({
+        url: baseurl + "Invoice_crudOperations/insert_Invoice",
+        type: "post",
+        data: formdata,
+        processData: false,
+        contentType: false,
+              dataType:"json",
+        success: function(data){
+          
+           if (data.status == 200){
+            Swal.fire({
+              title: "Success",
+              icon: "data inserted successfully",
+              draggable: true
+              });
+            $(".submit-form").trigger("reset");
+            $(" .submit-form input,select").next("span").text("");
+            paggination();
+            var editBtn = document.querySelector("#nav-home-tab");
+            var tab = new bootstrap.Tab(editBtn);
+            tab.show();
+          }
+          else{
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: data.errors.invoice_no,
+            });
+          }
+        }
+  
+      })
+    }
+  });
+
+
+
+
+  // open email model...........
+$(document).on("click",".email",function(){
+
+  $("#invoice_no_for_pdf").val($(this).attr('id')); 
+ })
+ 
+ // for sending mail.................
+ $("#send_email").on("click",function(){
+ 
+   let emaildata = new FormData(email_form);
+ 
+   $.ajax({
+     url: url + "send_email.php",
+     data:emaildata,
+     type:"post",
+     processData: false,
+     contentType: false,
+     dataType: "json",
+ 
+     success: function(data){
+       if (data.success!=''){
+         $("#close").trigger("click");
+         Swal.fire({
+           title: "sent email!",
+           text: data.success,
+           icon: "success",
+          
+         });
+    
+       $("#email-model-form").trigger("reset");
+       
+       } else if(data.error !="") {
+         Swal.fire({
+           title: "Not sent",
+           text: "something wrong",
+           icon: "warning"
+         });
+       
+       }
+     },
+ 
+   })
+ })
+ 
+ 
+ 
+ 

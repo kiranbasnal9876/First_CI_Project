@@ -53,11 +53,11 @@ function records($table_name,$data){
                 }
 
                 if($table_name == "invoice_master"){
-
-                    $output .= "<td class='text-center pdf' ><a><i class='bi bi-file-earmark-pdf-fill text-danger' id='{$data_table[$i]['id']}' data-table_name='$table_name'></i></a></td>
-                    
-                                <td class='text-center send_mail' ><i class='bi bi-envelope-plus-fill text-success' id='{$data_table[$i]['id']}' data-table_name='$table_name'></i></td>";
-
+                     $base_url=base_url();
+                    $output .= "
+                  <td id='pdf_genrate'><a href='{$base_url}.Invoice_crudOperations/invoice_pdf?id={$data_table[$i]['id']}' target='_blank'><i class='bi bi-file-earmark-pdf-fill text-danger pdf'></i></a></td>
+              <td><i id='{$data_table[$i]['invoice_no']}' class='bi bi-envelope-fill text-primary email'data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@fat'></i>
+              </td>";
                 }
                
                   $output .="<td id='{$data_table[$i]['id']}' data-table_name='$table_name' class='delete' ><button class='btn btn-danger'><i class='bi bi-trash3 m-3'></i></button></td><td id='{$data_table[$i]['id']}' data-table_name='$table_name' class='edit' ><button class='btn btn-info'><i class='bi bi-pencil m-3'></i></button></td>";
