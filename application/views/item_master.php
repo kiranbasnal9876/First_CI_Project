@@ -32,7 +32,7 @@ view_load('sidebar');
                            
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label"> Item Name:</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" name="itemName" required>
+                                <input type="text" class="form-control" id="validationCustom02" value="" name="itemName" maxlength="30" required>
                             </div>
                             <input type="hidden" name="page_no" id="current_page" value='1'>
                             <input type="hidden" name="row_no" id="limit" value="2">

@@ -36,7 +36,7 @@ if (! $this->session->has_userdata('log_user_data')) {
                             </div>
                             <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">Client Name:</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" name="name" required>
+                                <input type="text" class="form-control" id="validationCustom02" value="" name="name" maxlength="30" required>
 
                             </div>
                             <div class="col-md-2">
@@ -118,13 +118,13 @@ if (! $this->session->has_userdata('log_user_data')) {
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Email</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form name="email_form" id="email-model-form">
                                                         <div class="mb-3 ">
                                                             <label for="sender-name" class="text-start">Sender:</label>
-                                                            <input type="text" class="form-control" id="sender-name" placeholder="dimpalbasnal0@gmail.com" readonly>
+                                                            <input type="text" class="form-control" id="sender-name" name="sender" value="dimpalbasnal0@gmail.com" readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="recipient-name" class="col-form-label">Recipient:</label>
@@ -148,7 +148,10 @@ if (! $this->session->has_userdata('log_user_data')) {
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
-                                                    <button type="button" class="btn btn-primary" id="send_email">Send message</button>
+                                                    <div class="mail-btn">
+
+                                                        <button type="button" class="btn btn-primary" onclick='mail_send()'  id="send_email">Send message</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

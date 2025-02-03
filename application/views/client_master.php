@@ -56,7 +56,7 @@ view_load('sidebar');
                             </div>
                             <div class="col-md-2">
                                 <label for="validationCustom05" class="form-label">Address:</label>
-                                <input type="text" class="form-control" id="validationCustom05" name="address" required>
+                                <input type="text" class="form-control" id="validationCustom05" name="address" maxlength="200" required>
                                
                             </div>
                            
@@ -122,7 +122,7 @@ view_load('sidebar');
                                 <label for="validationCustomUsername" class="form-label">Phone Number<span class="error-message">*</span></label>
                                 
 
-                                    <input type="text" class="form-control" id="validationCustomUsername" maxlength="12" name="phone" required>
+                                    <input type="text" class="form-control numeric" id="validationCustomUsername" maxlength="12" name="phone" required>
 
                                 
                             </div>
@@ -165,7 +165,7 @@ view_load('sidebar');
                               </div>
                               <div class="col-md-3">
                                 <label for="validationCustom05" class="form-label">Pin Code<span class="error-message">*</span></label>
-                                <input type="text" class="form-control" id="validationCustom05 numeric" name="pincode" maxlength="8">
+                                <input type="text" class="form-control numeric" id="validationCustom05 " name="pincode" maxlength="8">
                              
                             </div>
                             <input type="hidden" name="table_name" value="client_master">

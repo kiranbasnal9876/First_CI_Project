@@ -55,4 +55,15 @@ class Get_Data extends CI_Model
 
         return $records;
     }
+
+
+
+    function all_masters_data(){
+      $user_data=  $this->db->get("user_master")->result();
+      $client_data=  $this->db->get("client_master")->result();
+      $item_data=  $this->db->get("item_master")->result();
+      $invoice_data=  $this->db->select("SUM(total_amount) as total")->get("invoice_master")->result();
+      return json_encode(["user_data"=>count($user_data),"client_data"=>count($client_data) ,"item_data"=>count($item_data),"invoice_data"=>$invoice_data]);
+      
+    }
 }

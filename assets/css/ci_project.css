@@ -72,9 +72,9 @@ html {
 
 .Main-container {
 
-  height: 100%;
+  height: 100vh;
   width: 100vw;
-
+position: relative;
   .navbar {
     height: 45px;
     width: 100vw;
@@ -108,6 +108,7 @@ html {
   .inner-container {
     display: flex;
     height: calc(100% - 45px);
+    position: relative;
 
     .sidebar {
       display: flex;
@@ -155,12 +156,12 @@ html {
       overflow-y: auto;
 
       input,
-      select {
-        height: 30px;
+      select{
+        height: 35px;
         font-size: 15px;
       }
 
-      label {
+      label{
         margin-bottom: 5px;
       }
 
@@ -261,3 +262,31 @@ html {
     margin-top: 20px;
   }
 }
+
+
+.dashboard-container{
+  padding: 30px;
+  
+.border{
+ 
+border-left: 5px solid #5e7b99 !important ;
+border-radius: 5px;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+
+   text-align: center;
+    .bi{
+      font-size: 50px;
+      
+    }
+    a{
+      text-decoration: none;
+    }
+
+    
+    .border:hover{
+     margin-top: -10px;
+   }
+ }

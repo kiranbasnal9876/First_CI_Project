@@ -7,5 +7,6 @@
 <script src="assets/js/validation.js"></script>
 <script src="assets/js/ajaxcall.js"></script>
 <script src="assets/js/invoice.js"></script>
+<script src="assets/js/mail_send.js"></script>
 </body>
 </html>

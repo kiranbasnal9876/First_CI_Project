@@ -117,6 +117,7 @@ $(document).on("click", ".delete", function () {
 				type: "post",
 				dataType: "json",
 				success: function (data) {
+					
 					if (data.data_for_edit == "deleted") {
 						Swal.fire({
 							title: "Deleted!",
@@ -124,7 +125,8 @@ $(document).on("click", ".delete", function () {
 							icon: "success",
 						});
 						paggination();
-					} else if (data.data_for_edit == "") {
+					} 
+					else if (data.data_for_edit == "") {
 						Swal.fire({
 							icon: "error",
 							title: "Oops...",
@@ -132,6 +134,14 @@ $(document).on("click", ".delete", function () {
 						});
 					}
 				},
+
+				error:function(){
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "You can't delete this!",
+					});
+				}
 			});
 		}
 	});
@@ -226,6 +236,7 @@ function imgDicShow() {
 // next btn
 
 // next button pagination
+
 $(document).on("click", "#pagination_right", function () {
 	let page = $("#current_page").val();
 	let totalPage = $(".pagination-li").data("pages");
@@ -235,6 +246,18 @@ $(document).on("click", "#pagination_right", function () {
 		paggination();
 	}
 });
+// $(document).on("click", "#last", function () {
+// 	let page = 1;
+// 	let totalPage = $(".pagination-li").data("pages");
+// 	page = Number(page) + 1;
+// 	if (page <= totalPage) {
+// 		$("#current_page").val(page);
+// 		paggination();
+// 	}
+// 	for(let i=0;i<=page;i++){
+// 		$("#pagination_right").trigger("click");
+// 	}
+// });
 
 // previous button pagination
 $(document).on("click", "#pagination_left", function () {
@@ -245,6 +268,10 @@ $(document).on("click", "#pagination_left", function () {
 		paggination();
 	}
 });
+
+
+
+
 
 // limit
 $("#selected_row").on("input", function () {
@@ -351,6 +378,7 @@ $("#nav-home-tab").on("click",function(){
   $("#nav-profile-tab").on("click",function(){
 	$(".update").hide();
     $(".submit").show();
+	$("#show-img").hide();
 	$(".submit_invoice").show();
 	$(".delete-item").trigger('click');
 	generateInvoiceNo();

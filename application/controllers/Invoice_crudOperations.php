@@ -68,10 +68,40 @@ function invoice_pdf()
     $id=$_GET['id'];
            $this->load->model('Invoice_DataOp');
    $data['invoice_details']= $this->Invoice_DataOp->get_invoice_pdfData($id);
+}
+$mr = '3px';
+$mpdf = new \Mpdf\Mpdf();
+$mpdf->showImageErrors = true;
+ob_start();
+
+// Write some HTML content
+$this->load->helper('download');
+$html = $this->load->view('pdf_html',$data,true);
+
+
+$mpdf->WriteHTML($html);
+
+$data=json_decode($data['invoice_details']);
+$clients=$data->client_details;
+
+$file='invoice_files/'.$clients[0]->invoice_no .'.pdf';
+
+$mpdf->Output($file,'I');
+
+
    
+}
+
+function download_pdf()
+{
+   
+   if(isset($_POST['id'])){
+    $id=$_POST['id'];
+    $this->load->model('Invoice_DataOp');
+   $data['invoice_details']= $this->Invoice_DataOp->get_invoice_pdfData($id);
+
   
-  
-   }
+}
 $mr = '3px';
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->showImageErrors = true;
@@ -87,18 +117,16 @@ $mpdf->WriteHTML($html);
 $data=json_decode($data['invoice_details']);
 $clients=$data->client_details;
 
-$file='invoice_files/'.$clients[0]->invoice_no .'.pdf';
 
-$mpdf->Output($file,'I');
+$file='invoice_files/'.$clients[0]->invoice_no.'.pdf';
 
 $mpdf->Output($file,'F');
+
+
+
    
 }
 
-
-function mail_send(){
-    $this->load->library('email');
-}
 
 
     }

@@ -10,12 +10,14 @@ class All_Masters extends CI_Controller
         $urlArr = explode('/',$url);
         $last_url = end($urlArr);
         check_session($last_url);
+        $this->load->model('Get_Data');
     }
 
 
     function dashboard()
     {
-        $this->load->view('dashboard');
+       $data['details']= $this->Get_Data->all_masters_data();
+        $this->load->view('dashboard',$data);
 
     }
 
@@ -28,7 +30,7 @@ class All_Masters extends CI_Controller
     function client_master()
     {
 
-        $this->load->model('Get_Data');
+      
         $data['states'] = $this->Get_Data->get_states();
         
         $this->load->view('client_master',$data);
@@ -50,7 +52,7 @@ class All_Masters extends CI_Controller
         $id = $_POST['state_id'];
 
 
-        $this->load->model('Get_Data');
+        
         $data =  $this->Get_Data->get_destrict($id);
 
         for ($i = 0; $i < count($data); $i++) {

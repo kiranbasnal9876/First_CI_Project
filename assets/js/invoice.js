@@ -67,24 +67,7 @@ function amount() {
   amount();
   
   
-// invoice number
-$("#profile-tab").on("click", function () {
-    $.ajax({
-      url: url + "invoice_backend.php",
-      type: "post",
-      data: {
-        action: "get_invoiceNo",
-      },
-      success: function (data) {
-        data = JSON.parse(data);
-      
-        $(".invoic").val("100" + (Number(data.id) + 1));
-        invoice_date();
-      },
-    });
-  });
 
-  
 
 
 
@@ -341,51 +324,3 @@ $(document).on("keyup", ".clients", function () {
 
 
 
-
-  // open email model...........
-$(document).on("click",".email",function(){
-
-  $("#invoice_no_for_pdf").val($(this).attr('id')); 
- })
- 
- // for sending mail.................
- $("#send_email").on("click",function(){
- 
-   let emaildata = new FormData(email_form);
- 
-   $.ajax({
-     url: url + "send_email.php",
-     data:emaildata,
-     type:"post",
-     processData: false,
-     contentType: false,
-     dataType: "json",
- 
-     success: function(data){
-       if (data.success!=''){
-         $("#close").trigger("click");
-         Swal.fire({
-           title: "sent email!",
-           text: data.success,
-           icon: "success",
-          
-         });
-    
-       $("#email-model-form").trigger("reset");
-       
-       } else if(data.error !="") {
-         Swal.fire({
-           title: "Not sent",
-           text: "something wrong",
-           icon: "warning"
-         });
-       
-       }
-     },
- 
-   })
- })
- 
- 
- 
- 

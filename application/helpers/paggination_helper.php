@@ -19,17 +19,21 @@ function records($table_name,$data){
            
       $total_rows = $CI->db->get($table_name)->num_rows();
             $total_page= ceil($total_rows/$limit);
-
-            // Number of pages 
-  
+          
+          
            
+            
+            
+            
+           
+          
     $pages = '<button type="button" class="btn btn-outline-primary" id="pagination_left">Left</button>';
 
     
     $pages .= "<button type='button' class='btn btn-outline-primary pagination-li'data-pages='$total_page'  id='$page_no'>$page_no</button>";
     
     $pages .='<button type="button" class="btn btn-outline-primary" id="pagination_right">Right</button>';
-            
+   
 
     // print_r($data_table);
             for($i=0;$i<count($data_table);$i++){
@@ -56,7 +60,7 @@ function records($table_name,$data){
                      $base_url=base_url();
                     $output .= "
                   <td id='pdf_genrate'><a href='{$base_url}.Invoice_crudOperations/invoice_pdf?id={$data_table[$i]['id']}' target='_blank'><i class='bi bi-file-earmark-pdf-fill text-danger pdf'></i></a></td>
-              <td><i id='{$data_table[$i]['invoice_no']}' class='bi bi-envelope-fill text-primary email'data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@fat'></i>
+              <td><i id='{$data_table[$i]['id']}' data-id='{$data_table[$i]['invoice_no']}' data-email='{$data_table[$i]['email']}'' class='bi bi-envelope-fill text-primary email'data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@fat'></i>
               </td>";
                 }
                

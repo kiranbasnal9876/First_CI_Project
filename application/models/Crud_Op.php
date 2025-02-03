@@ -73,9 +73,12 @@ class Crud_Op extends CI_Model
               return  $data = "deleted";
             }
           }
-        $this->db->where('id', $id)->delete($table_name);
-
-        $data = "deleted";
+          if($this->db->where('id', $id)->delete($table_name)){
+            $data = "deleted";
+          }
+       
+        
+       
       } else if ($action == "edit") {
         $this->db->from($table_name);
         if ($table_name == 'invoice_master') {
@@ -92,7 +95,7 @@ class Crud_Op extends CI_Model
           return $data;
           die;
         }
-
+       
         $data = $this->db->where('id', $id)->get("")->result_array();
       }
 
