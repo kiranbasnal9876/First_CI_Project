@@ -19,7 +19,7 @@ if (! $this->session->has_userdata('log_user_data')) {
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"> Records</button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Add User</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Add Invoice</button>
 
             </div>
         </nav>
@@ -36,7 +36,7 @@ if (! $this->session->has_userdata('log_user_data')) {
                             </div>
                             <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">Client Name:</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" name="name" maxlength="30" required>
+                                <input type="text" class="form-control " id="validationCustom02" value="" name="name" maxlength="30" required>
 
                             </div>
                             <div class="col-md-2">

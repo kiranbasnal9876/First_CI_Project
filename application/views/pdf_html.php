@@ -6,6 +6,87 @@ $clients=$data->client_details;
 $items=$data->item_details;
 
 
+function num_to_world($num){
+    $arr=[0=>'Zero',
+1=>" One",
+2=>" two",
+3=>" three",
+4=>" four",
+5=>" five",
+6=>" six",
+7=>" seven",
+8=>" eight",
+9=>" nine",
+10=>" ten",
+11=>" eleven",
+12=>" twelve",
+13=>" thirteen",
+14=>" fourteen",
+15=>" fifteen",
+16=>" sixteen",
+17=>" seventeen",
+18=>" eighteen",
+19=>" nineteen",
+20=>" twenty",
+30=>" thirty",
+40=>" fourty",
+50=>" fifty",
+60=>" sixty",
+70=> " seventy",
+80=>" eighty",
+90=>" ninty",
+];
+    // $str=strlen($num);
+    $word="";
+
+    
+    if(isset($arr[$num])){
+     return   $word .= $arr[$num];
+  
+    }
+
+
+if($num>=100000){
+    
+    $word .= $arr[$num/100000] . "  Lakh";
+    $num = $num%100000 ; 
+}
+
+if($num>=1000){
+    
+    $word .= $arr[$num/1000] . " thousand";
+    $num = $num%1000 ; 
+}
+
+
+if($num>=100){
+    
+    $word .= $arr[$num/100] . " hundred";
+    $num = $num%100 ; 
+}
+
+if($num >=10){
+    
+    
+  
+    $word .= $arr[floor(($num/10))*10];
+    $num = $num%10 ; 
+}
+if($num<10 && $num>0){
+   
+
+    $word .= $arr[$num];
+
+}
+
+return $word;
+
+}
+
+
+
+
+
 
 ?>
 
@@ -32,7 +113,12 @@ $items=$data->item_details;
             margin-left: 500px;
             margin-top: 30px;
         }
-
+       .amount_in_words{
+        margin-left: 500px;
+       color: black;
+       font-weight: 200px;
+       font-size: 12px;
+       }
         p {
             text-align: center;
         }
@@ -109,7 +195,12 @@ foreach($items as $item) {
 
     <div class="amount_details">
         <span><b class="Total-amount">Subtotal amount:</b><small><?php echo $clients[0]->total_amount; ?></small></span><br>
-        <span><b class="Total-amount">Total amount:</b><small><?php echo $clients[0]->total_amount; ?></small></span>
+        <span><b class="Total-amount">Total amount:</b><small><?php echo $clients[0]->total_amount; ?></small></span><br>
+       
+    </div>
+    <div class="amount_in_words">
+
+        <span>In worrds:<?php echo num_to_world($clients[0]->total_amount); ?></span>
     </div>
 
     <p>THANK YOU</p>

@@ -118,6 +118,27 @@ function validate() {
   });
 }
 
+var check=true;
+function validate_invoice() { 
+
+  $(".submit-form input[type!='hidden']  ").each(function () {
+    
+    if ($("#client_name") == "" || $("#input") == "") {
+      $(this).next('.error-message').remove();
+       $(this).after("<span class='error-message'></span>"); 
+       $name=  $(this).prev("label").text();
+  
+    
+       $(this).next("span").text($name.slice(0,-1)+" is required");
+      
+       check=false;
+    }
+    else{
+      check=true;
+    }
+  });
+}
+
 
 
 // validate function when updating data

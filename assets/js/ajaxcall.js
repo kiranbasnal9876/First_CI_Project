@@ -179,10 +179,12 @@ $(document).on("click", ".edit", function () {
 					   
 				});
                  if(data.data_for_edit['total_amount'] !=""){
-
+                  
 					 for (let i = 0; i < data.data_for_edit.length; i++) {
 						 if (i > 0) {
+							
 						   $("#add-more").trigger("click");
+						  
 						 }
 						 // console.log("data.output2[i]", data.output2[i]);
 						 var currentClone = $(".clone").eq(i);
@@ -208,6 +210,7 @@ $(document).on("click", ".edit", function () {
 				$("#inputState").on("change", function (e) {
 					$("#input_district").val("");
 				});
+				
 				$(".update").show();
 				$(".submit").hide();
 				var editBtn = document.querySelector("#nav-profile-tab");
@@ -246,18 +249,7 @@ $(document).on("click", "#pagination_right", function () {
 		paggination();
 	}
 });
-// $(document).on("click", "#last", function () {
-// 	let page = 1;
-// 	let totalPage = $(".pagination-li").data("pages");
-// 	page = Number(page) + 1;
-// 	if (page <= totalPage) {
-// 		$("#current_page").val(page);
-// 		paggination();
-// 	}
-// 	for(let i=0;i<=page;i++){
-// 		$("#pagination_right").trigger("click");
-// 	}
-// });
+
 
 // previous button pagination
 $(document).on("click", "#pagination_left", function () {
@@ -347,6 +339,7 @@ $(".update").on("click", function () {
 					$(".update").hide();
                    $(".submit").show();
                    $(".submit_invoice").show();
+				   $(".delete-item").trigger('click');
 					paggination();
 					var editBtn = document.querySelector("#nav-home-tab");
 					var tab = new bootstrap.Tab(editBtn);

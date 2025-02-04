@@ -3,11 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Crud_Op extends CI_Model
 {
+
   function insert_data($table_name, $data, $action)
   {
     if ($action == 'insert') {
       $this->db->insert($table_name, $data);
     } 
+    
     else if ($action == 'update') {
       if (isset($data['password']) && $data['password'] == "") {
         array_pop($data);

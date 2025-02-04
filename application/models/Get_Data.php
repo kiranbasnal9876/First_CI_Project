@@ -3,6 +3,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Get_Data extends CI_Model
 {
+
+    // checking email and password is in database or not 
     function loggin_user($email, $password)
     {
 
@@ -10,16 +12,23 @@ class Get_Data extends CI_Model
         return $this->db->select('*')->where($where)->get('user_master')->result_array();
     }
 
+
+
+
+
     function get_states()
     {
         return  $this->db->get('state_master')->result_array();
     }
+
 
     function get_destrict($id)
     {
         return $this->db->where('state_id', $id)->get('district_master')->result_array();
     }
 
+
+    
     function records($table_name, $limit, $colname, $order, $page_no, $data)
     {
 
@@ -27,6 +36,7 @@ class Get_Data extends CI_Model
         $offset = ($page_no - 1) * $limit;
 
         $this->db->order_by($colname, $order);
+        
          foreach($data as $key=>$value){
             $this->db->like($key,$value);
          }
@@ -55,6 +65,7 @@ class Get_Data extends CI_Model
 
         return $records;
     }
+
 
 
 
